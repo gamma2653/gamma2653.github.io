@@ -17,7 +17,7 @@ function smooth_scrolling_init() {
 };
 
 
-function init_map() {
+function initMap() {
   var cornell = {lat: 42.449700, lng: -76.477700};
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15,
@@ -128,7 +128,4 @@ function init_map() {
 // }
 $(document).ready(function () {
   smooth_scrolling_init();
-  init_map();
-
-
 });
