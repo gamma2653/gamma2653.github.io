@@ -5,6 +5,40 @@
   src: url('https://fonts.googleapis.com/css?family=Muli');
 }
 
+h2.brb, h1.brb {
+  color: #b31b1b;
+}
+h1.big{
+  font-size: 86px;
+}
+
+h3.president{
+
+}
+h3.treasurer{
+
+}
+h3.internal{
+
+}
+h3.rockstar{
+  color: #049904
+}
+h3.advisor{
+
+}
+
+.imgbox {
+  display: grid;
+  height: 100%;
+}
+
+img.logo{
+  max-width: 50%;
+  max-height: 50vh;
+  margin: auto;
+}
+
 @font-face {
   font-family: 'Open Sans',sans-serif;
   /* Font Source: https://fonts.google.com/specimen/Open+Sans*/
