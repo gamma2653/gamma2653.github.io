@@ -19,7 +19,7 @@
   <meta name="description" content="A website detailing Chris's various projects over the years. Enjoy!">
   <meta property="og:title" content="Christopher De Jesus's Portfolio Website - Home">
   <meta property="og:description" content="A website detailing Chris's various projects over the years. Enjoy!">
-  <meta property="og:image" content="https://gamma2653.github.io/banner.png">
+  <meta property="og:image" content="https://gamma2653.github.io/assets/images/banner.png">
   <meta property="og:image:alt" content="Chris's title-card">
   <meta property="og:locale" content="en_GB">
   <meta property="og:type" content="website">
@@ -45,7 +45,26 @@
     <div id="project-body" class="project-body">
       <div id="c1c0-scheduler" class="c1c0-scheduler">
         <h2>C1C0 Scheduler (Reimplimentation)</h2>
-        <p></p>
+        <div>
+          <p>This project has been the result of me taking an implementation of the scheduler for a lab assistant robot, named C1C0
+            and going about reimplementing it for the sake of greater extensibility (removing many hardcoded components, while adding
+            many utiltiies to allow other developers to more easily plug into it) and potentially speeding up the project along the way.
+            This has lead me to creating a robot scheduling system that is modular enough to potentially be used on other robotic chassis with
+            significantly less setup required than having to write a scheduler from scratch.
+          </p>
+          <p>
+            Features include:
+          </p>
+          <ul>
+            <li>Sensor Suite with automatic worker thread spawning to collect Serial data with the possibility of creating custom
+              "data collection" classes that can be used to collect other kinds of data.</li>
+            <li>Reader Writer Suite that can be used to easily utilize reader-writer locks in above data reading situations.</li>
+            <li>Automatic support for over the web interfacing (thanks to using gRPC).</li>
+            <li>Extensible functionality- as simple as implementing a function that takes a predefined set of arguments and adding
+              said function to a list in the System-implementing class.</li>
+            <li>And more, see the `packaging` branch on Github.</li>
+          </ul>
+        </div>
       </div>
       <div id="tcat-data-pipeline" class="tcat-data-pipeline">
         <h2>TCAT Data Pipline/ Warehouse</h2>
