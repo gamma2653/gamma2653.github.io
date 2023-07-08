@@ -33,4 +33,17 @@ a:visited {
 
 .project {
     background-color: #071a07;
+    padding: 24px;
+    border-radius: 50px;
+    border-top-right-radius: 100px;
+    border-top-left-radius: 100px;
+    min-width: 100vb;
+}
+
+.project-body {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
 }

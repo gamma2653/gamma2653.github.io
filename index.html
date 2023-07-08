@@ -30,7 +30,7 @@
   <link rel="icon" href="/favicon.ico">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <meta name="theme-color" content="#FF00FF">
+  <!-- <meta name="theme-color" content="#FF00FF"> -->
 </head>
 
 <body>
@@ -43,159 +43,20 @@
     </p>
     </div>
     <div id="project-body" class="project-body">
-      <div id="c1c0-scheduler" class="c1c0-scheduler project">
-        <h2>C1C0 Scheduler (Reimplimentation)</h2>
-        <div>
-          <p>
-            <a href="">Github link here.</a>
-          </p>
-          <p>
-            This project has been the result of me taking an implementation of the scheduler for a lab assistant robot, named C1C0
-            and going about reimplementing it for the sake of greater extensibility (removing many hardcoded components, while adding
-            many utiltiies to allow other developers to more easily plug into it) and potentially speeding up the project along the way.
-            This has lead me to creating a robot scheduling system that is modular enough to potentially be used on other robotic chassis with
-            significantly less setup required than having to write a scheduler from scratch.
-          </p>
-          <p>
-            Features include:
-          </p>
-          <ul>
-            <li>Sensor Suite with automatic worker thread spawning to collect Serial data with the possibility of creating custom
-              "data collection" classes that can be used to collect other kinds of data.</li>
-            <li>Reader Writer Suite that can be used to easily utilize reader-writer locks in above data reading situations.</li>
-            <li>Automatic support for over the web interfacing (thanks to using gRPC).</li>
-            <li>Extensible functionality- as simple as implementing a function that takes a predefined set of arguments and adding
-              said function to a list in the System-implementing class.</li>
-            <li>And more, see the `packaging` branch on Github.</li>
-          </ul>
-        </div>
-      </div>
-      <div id="tcat-data-pipeline" class="tcat-data-pipeline project">
-        <h2>TCAT Data Pipline/ Warehouse</h2>
-        <p>
-          <a href="">Github link here.</a>
-        </p>
-        <p>
-          This has been a massive data analysis project taken on while I was a "Programmer Intern" for Tompkins Consolidated Area Transit (TCAT).
-          The work I did here involved building a pipeline that would pull large amounts of data, and automatically both statistically and heuristically
-          analyze the data. This project eventually led to me and my supervisor to begin constructing a new data warehouse- which turned out to be
-          what we needed all along as new and new regular analysis were needed.
-        </p>
-        <p>
-          As a result, this project is still on-going, but projected to be completed by this January, 2022.
-        </p>
-        <p>
-          There is also a possibility of this project going open-source. As of right now, however, it is closed-source.
-        </p>
-      </div>
-      <div id="project-hapi" class="project-hapi project">
-        <h2>Project H-API (indefinitely on hiatus)</h2>
-        <p>
-          <a href="">Github link here.</a>
-        </p>
-        <p>
-          This was a long-time pet-project of mine that I started before a few years before entering university and had worked 
-          on-and-off during my first two years. It's objective was to simulate -not emulate- the human mind using modern psychological
-          models as a base abstraction for how the mind works. This is obviously less computationally intensive than emulating a human brain,
-          and had found some limited success. During my time at university, I had found that many of my self-research had proven to be correct
-          (including the chosen model for personality and to some limited degree my approach to how it affects emotions) while finding other
-          models could use improvements (such as my treatment of the way personality changes and lack of modeling temperment).
-        </p>
-        <p>
-          Flash forward to today, and I view this project as a learning experience where I see that I had made lots of really cool meaningful
-          progress, while also realizing where I was wrong and what approaches could use improvement. I believe that this is a project that I
-          can one day revisit and give another try, and who knows, I may be successful.
-        </p>
-        <p>
-          Note: Project H-API stands for Project Human - Application Programming Interface
-          I am indeed quite proud of the wordplay :)
-        </p>
-      </div>
-      <div id="surelockedholmes" class="surelockedholmes project">
-        <h2>SureLockedHolmes</h2>
-        <p>
-          <a href="">Github link here.</a>
-        </p>
-        <p>
-          This project was developed during the short duration of PenApps XVI (UPenn's 36 hour hackathon) along with a team of 3 high schoolers.
-          My role on the team was writing software that hooked into Microsoft's facial recognition API and controlled a number of smart devices
-          (represented using a few motors and lights on Lutron's Smart-home kit). In the process, I wrote custom drivers to more easily interface
-          with Lutron's smart home system, and in effect was likely compatible with a number of Lutron implemented smart-homes.
-
-          This goal of the project, which we took to calling "SureLockedHolmes" was to provide a Smart tablet that would be able to recognize
-          which user picked it up, and automatically configure/login to the appropriate account, while also granting custom permissions sets to
-          said user to control different smart devices.
-
-          In the end, we reached the final stage of competitive contestants, and won Best Domain Name (unfortunately we did not properly fill out
-          the Best Lutron Smart-home device prize application properly in time, we definitely had a good shot at that one!). We were very happy
-          with the product we made, however as my teammates were from Canada, and I would be returning to Ithaca, NY, we all figured that the
-          project was unlikely to continue together. That said, my teammates decided to give the hardware used to me, I have not yet returned to
-          the project, but I still have the hardware, and perhaps one day I'll return to it as a little pet-project.
-        </p>
-        <p>
-          Funny side-story: This was also the event that led to me injuring my left-hand's pinky (luckily without nay loss of function) 
-          with a vertical gash of a scar. It makes for a fun (and head-tilting) to tell friends about how I got <em>injured</em> at a <em>hackathon</em>.
-          I had been working into roughly the 24-hour mark and had skipped various fun events (notably a laser tag session and another I don't
-          quite remember now) that my teammates had the chance to attend. My teammates urged me to take advantage of the third and last fun event
-          scheduled and I was comfortable with the point I was at in my work- and went ice skating.
-          Needless to say, considering what this is a story about, that did not end up well for me. In a turn of events though, instead of going to
-          the hospital, I decided that the bandages would suffice (part of my choice had to do with that I was not sure at the time whether my health
-          insurance extended to hospitals in Philadelphia, and I was not about to find out they did not), so I decided to keep working on the project 
-          through the night. In hindsight, it probably would have been wise to instead get rest, but fortunately everything turned out okay and 
-          my injury healed over the next few days. I have since then been reminded to "take care of my health first" everytime I recount this story-
-          and I do indeed acknowledge everytime that they are correct. I believe I have since then been better about that.
-        </p>
-      </div>
-      <div id="lasertag-robot" class="lasertag-robot project">
-        <h2>Lasertag Robot</h2>
-        <p>
-          This was a small project that was worked on during the Cooper Union Summer STEM Program I did. The first three weeks were spent
-          learning digital logic, while the last three weeks were spent designing and building a prototype of a project of our choice along
-          with a three others. We were designing our robot against another four person team. I ended up coming up with the gimick of our robot:
-          it would be dome-shaped and have a ring of mirrors that it would spin, potentially hitting enemy lasers back at their sensors. Each
-          robot has 2 light sensors, one in the front and one in the back, that would only be tripped by high light levels, such as a led laser.
-          The robot was equipped with one laser in the front. This was made possible by attaching a servo to the top of the dome, that would rotate
-          a gear that had various spindles connected to it that would turn the main ring that held the mirrors. My part was building that ring-mirror
-          structure, programming the logic for when our robot was hit, some of the motor controls, and the ring controls from the controller.
-        </p>
-      </div>
-      <div id="encompass" class="encompass project">
-        <h2>Encompass</h2>
-        <p>
-          This is another project that was developed during a hackathon. This was for the Cornell Animal Health Hackathon, where we came up with
-          a design for a product called "Encompass." The idea would be to have a central hub that vet clinics can use for data entry and as a
-          way to standardize existing pet information. More importantly, the website had a feature to send a pre-appointment survey that would
-          categorize the pet's owner into one of four categories, where they would then be allocated a certain amount of time with the vet-tech
-          and the veterinarian. The categories are based on questions proven to be able to distinguish people's preferences when it comes to
-          receiving information about their own or someone else's health. (The test was developed by MindGenomics whom we had worked closely with
-          throughout the hackathon). Turns out the idea was great and the prototype sufficiently demonstrated our idea since we won first place
-          in our target pillar (clinical workflow & efficiency). 
-        </p>
-        <p>
-          All this said, once again, this was a project my team did not carry on any further. I wished to, but three of our teammates did not
-          wish to join in, and my only other teammate soon found himself also too busy to work on it- and thus it also became a project left
-          behind. I must say though, at the very least these projects allowed me to show my ability to apply what I know to a wide range of projects.
-        </p>
-      </div>
-      <div id="fsc-col-5v6" class="fsc-col-5v6 project">
-        <h2>NOAA: Analyzing Fractional Snow Cover Col 5 vs 6</h2>
-        <p>
-          In this experience, I had the opportunity to work on analyzing satellite data from the Terra and Aqua satellites. In particular,
-          I was able to analyze NASA's Fractional Snow Cover Collection 5 vs 6 and draw some preliminary conclusions as to what effects
-          switching to the NDSI system of calculating snow cover. This was accomplished by finding case studies, then backing up hypotheses
-          with statistics that would further back up my hypotheses. More details can be found on the poster located here.
-        </p>
-        <p>
-          The fun part of this project was being able to work with massive data sets; on the scale of a few hundred gigabytes (this was pre-2016!).
-          It taught me some valuable lessons about how to handle working with things in memory and how to be mindful of memory usage.
-        </p>
-      </div>
-      
-      
+      <p>Is Javascript enabled?</p>
+      <p>If you are reading this, that means the content loader is taking awhile to run, or something has gone terribly wrong!</p>
     </div>
   </div>
 
   <script src="/assets/js/xy-polyfill.js" nomodule></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="/assets/js/script.js" type="module"></script>
+  <script src="/assets/js/projects.js" type="module"></script>
+  <script>if(typeof loadProjects === "undefined"){
+    $.getScript("/assets/js/projects.js", function(){
+      loadProjects();
+    });
+  }
+  </script>
 </body>
 </html>
