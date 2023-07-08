@@ -3,7 +3,16 @@ h1 {
     font-weight: 500;
     line-height: 1.2;
     margin-bottom: 0.5rem;
-    color: #0edaf5;
+    color: #158b15;
+}
+
+h2 {
+    color: #7ae5f3;
+}
+
+body {
+    color: #fddcdc;
+    font-family: 'Verdana', sans-serif;
 }
 
 .container {
@@ -12,4 +21,16 @@ h1 {
     border-radius: 0.25rem;
     margin-bottom: 1rem;
     background-color: #2c2c2c;
+}
+
+a:link {
+    color: #770101;
+}
+
+a:visited {
+    color: #615353;
+}
+
+.project {
+    background-color: #071a07;
 }
