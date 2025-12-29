@@ -1,9 +1,0 @@
-0000000000000000000000000000000000000000 b2993a2d2e03635e12ce509cae9640b157addea6 Christopher De Jesus <Christopher2653@gmail.com> 1688799581 -0400	clone: from https://github.com/gamma2653/gamma2653.github.io
-b2993a2d2e03635e12ce509cae9640b157addea6 ba27ed67d9244756d05acb7f4415831933401986 Christopher De Jesus <Christopher2653@gmail.com> 1688800071 -0400	commit: Some styling
-ba27ed67d9244756d05acb7f4415831933401986 8bea6d730e3870d8495acd97d20880f2c17bc107 Christopher De Jesus <Christopher2653@gmail.com> 1688800236 -0400	commit: Some styling
-8bea6d730e3870d8495acd97d20880f2c17bc107 f985679d4eb50062ef4f4ded663645131fc0ac80 Christopher De Jesus <Christopher2653@gmail.com> 1688802724 -0400	commit: Some styling
-f985679d4eb50062ef4f4ded663645131fc0ac80 f5c8624b48c412a09a4b68f025c1698295a8af7b Christopher De Jesus <Christopher2653@gmail.com> 1688808121 -0400	commit: Sweeping changes, javascript autoloader done.
-f5c8624b48c412a09a4b68f025c1698295a8af7b 05510421633d761ea75a55b2a9caedfd47dc7c9c Christopher De Jesus <Christopher2653@gmail.com> 1688811729 -0400	commit: Description parser done.
-05510421633d761ea75a55b2a9caedfd47dc7c9c 792b34d2ac26f3212eb34516cadee045f22851c3 Christopher De Jesus <christopher2653@gmail.com> 1767043611 -0500	commit: React revamp
-792b34d2ac26f3212eb34516cadee045f22851c3 bbf9605f27d19ee5510e3ccacdb9bcd8a33483b1 Christopher De Jesus <christopher2653@gmail.com> 1767043829 -0500	commit: Add gh pages deploy script
-bbf9605f27d19ee5510e3ccacdb9bcd8a33483b1 8624546ff7fa3c4578688c68fe1a72f324b3fd5e Christopher De Jesus <christopher2653@gmail.com> 1767044318 -0500	commit: other deploy
