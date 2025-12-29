@@ -1,0 +1,21 @@
+Hotfix?
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch public
+# Your branch is up to date with 'origin/public'.
+#
+# Changes to be committed:
+#	modified:   docs/index.html
+#	renamed:    docs/static/css/index.3b5c7651.css -> docs/static/css/index.d769aa09.css
+#	deleted:    docs/static/js/644.432d4475.js
+#	new file:   docs/static/js/644.4dfce0b2.js
+#	renamed:    docs/static/js/644.432d4475.js.LICENSE.txt -> docs/static/js/644.4dfce0b2.js.LICENSE.txt
+#	renamed:    docs/static/js/index.f2b9bd86.js -> docs/static/js/index.877e48c9.js
+#	new file:   docs/static/js/lib-react.1630c51b.js
+#	renamed:    docs/static/js/lib-react.65bb8341.js.LICENSE.txt -> docs/static/js/lib-react.1630c51b.js.LICENSE.txt
+#	deleted:    docs/static/js/lib-react.65bb8341.js
+#	modified:   package-lock.json
+#	modified:   package.json
+#
