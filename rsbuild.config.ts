@@ -29,6 +29,6 @@ export default defineConfig({
     favicon: 'src/assets/images/favicon.png',
   },
   output: {
-    distPath: 'build'
+    distPath: 'docs'
   }
 });
