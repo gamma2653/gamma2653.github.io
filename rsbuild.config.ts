@@ -28,6 +28,9 @@ export default defineConfig({
   html: {
     favicon: 'src/assets/images/favicon.png',
   },
+  server: {
+    base: "/portfolio/",
+  }
   // output: {
   //   distPath: 'docs'
   // }
