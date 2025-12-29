@@ -28,7 +28,7 @@ export default defineConfig({
   html: {
     favicon: 'src/assets/images/favicon.png',
   },
-  output: {
-    distPath: 'docs'
-  }
+  // output: {
+  //   distPath: 'docs'
+  // }
 });
