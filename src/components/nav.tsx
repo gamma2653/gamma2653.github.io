@@ -31,7 +31,7 @@ export default function Navbar(props: NavbarProps) {
                 <p>Projects</p>
                 <ChevronDownIcon className={clsx('w-5 inline-block', open && 'rotate-180')} />
               </DisclosureButton>
-              <DisclosurePanel className="absolute bg-white dark:bg-gray-800 shadow-md mt-2 rounded-md z-10">
+              <DisclosurePanel className="absolute bg-white dark:bg-gray-600 shadow-md mt-2 rounded-md z-10">
                 <ul className="flex flex-col p-4 gap-2">
                   {categories.map((category) => (
                     <li key={category}>

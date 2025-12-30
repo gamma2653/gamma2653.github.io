@@ -1,5 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import Page from '../components/page';
+import { CaptionedImage } from '../components/image';
+import butter_tasty from '../assets/images/butter_tasty.jpg';
 
 export const Route = createFileRoute('/about')({
   component: RouteComponent,
@@ -30,6 +32,10 @@ function RouteComponent() {
       <p className="text-md text-gray-500 dark:text-gray-400 mt-2 text-center">
         Thank you for taking the time to learn more about me. I look forward to connecting with you, and please reach out through the contact page!
       </p>
+      <CaptionedImage src={butter_tasty} alt="Hiking Buttermilk Falls" caption="Hiking Buttermilk Falls" classNames={{
+        div: "mt-16",
+        div_img: "h-100 mx-auto",
+      }} />
     </Page>
   );
 }
