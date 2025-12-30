@@ -11,9 +11,9 @@ import { createFileRoute } from '@tanstack/react-router'
 const App = () => {
   return (
     <Page>
-      <Banner img={storyboard} to="/projects/software" text_overlay="Software" classNames={{div: "mt-0"}}/>
-      <Banner img={c1c0_collage} to="/projects/robotics" text_overlay="Robotics" classNames={{div: "mt-2 mb-2"}} />
-      <Banner img={bluestamp_collage} to="/projects/academics" text_overlay="Academics" classNames={{div: "mt-2"}} />
+      <Banner img={storyboard} to="/software" text_overlay="Software" classNames={{div: "mt-0"}}/>
+      <Banner img={c1c0_collage} to="/robotics" text_overlay="Robotics" classNames={{div: "mt-2 mb-2"}} />
+      <Banner img={bluestamp_collage} to="/academics" text_overlay="Academics" classNames={{div: "mt-2"}} />
       <p className="text-md text-gray-500 dark:text-gray-400 mt-2 text-center">
         You will find that all of my projects have been oriented towards understanding how information is processed,
         as well as some other hobby related projects.
@@ -43,4 +43,5 @@ const App = () => {
 
 export const Route = createFileRoute('/')({
   component: App,
+
 })

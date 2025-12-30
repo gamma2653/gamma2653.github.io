@@ -1,14 +1,16 @@
 import { createFileRoute } from '@tanstack/react-router'
 import Page from '../components/page';
 
-export const Route = createFileRoute('/projects')({
+export const Route = createFileRoute('/robotics')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
   return (
     <Page>
-        <div></div>
+        <div>
+            WIP
+        </div>
     </Page>
   )
 }
