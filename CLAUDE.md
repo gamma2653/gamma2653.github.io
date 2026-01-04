@@ -79,6 +79,18 @@ Key routes:
 
 4. **Router Configuration**: Uses memory history instead of browser history for GitHub Pages static hosting compatibility
 
+5. **Internal Navigation**: **CRITICAL** - Always use TanStack Router's `Link` component for internal navigation instead of anchor tags:
+   ```tsx
+   import { Link } from '@tanstack/react-router'
+
+   // Good - uses Link component for client-side routing
+   <Link to="/contact">Contact</Link>
+
+   // Bad - DOES NOT WORK with MemoryHistory
+   <a href="/contact">Contact</a>
+   ```
+   Because this project uses MemoryHistory (not browser history), anchor tags with `href` attributes **will not work** for internal navigation. They must be `Link` components with `to` props. Only use `<a>` tags for external URLs (e.g., `https://github.com/...`).
+
 ## Testing
 
 - Uses Rstest (not Vitest) with React Testing Library
