@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import Page from '../components/page';
 import { CaptionedImage } from '../components/image';
 import butter_tasty from '../assets/images/butter_tasty.jpg';
@@ -176,7 +176,7 @@ function RouteComponent() {
             </a>
           </div>
           <p className="text-center text-gray-600 dark:text-gray-400 mt-6">
-            Or reach out through the <a href="/contact" className="text-blue-600 dark:text-blue-400 hover:underline">contact page</a>!
+            Or reach out through the <Link to="/contact" className="text-blue-600 dark:text-blue-400 hover:underline">contact page</Link>!
           </p>
         </div>
 
