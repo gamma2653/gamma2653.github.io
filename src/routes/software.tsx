@@ -116,6 +116,26 @@ function RouteComponent() {
                   </p>
               </div>
             </div>
+
+            <div className='mt-8'>
+              <a href="https://github.com/gamma2653/TCAT_Service_Journal" className="no-underline"><h1 className='text-2xl font-extrabold'>
+                6. TCAT Service Journal
+              </h1></a>
+              <p className='text-sm font-semibold mb-2'>
+                Technologies used: <a href='https://www.python.org/'>Python</a>, ETL Framework, Data Analysis, Makefile
+              </p>
+              <div className='mt-4'>
+                  <p className="2xl:pl-100 2xl:pr-100 xl:pl-50 xl:pr-50 sm:pl-0 sm:pr-0">
+                    An ETL (Extract, Transform, Load) framework for analyzing Automatic Vehicle Location (AVL) data from TCAT buses, covering the period from 2018 to 2023.
+                  </p>
+                  <p className="2xl:pl-100 2xl:pr-100 xl:pl-50 xl:pr-50 sm:pl-0 sm:pr-0">
+                    This project provides a framework for journaling and analyzing transit bus activity, enabling performance analysis and pattern recognition across multi-year datasets.
+                  </p>
+                  <p className="2xl:pl-100 2xl:pr-100 xl:pl-50 xl:pr-50 sm:pl-0 sm:pr-0">
+                    The system demonstrates data engineering skills with a specialized pipeline for processing transit authority vehicle location and activity patterns for the Ithaca-based TCAT (Tompkins Consolidated Area Transit) system.
+                  </p>
+              </div>
+            </div>
         </div>
     </Page>
   )
