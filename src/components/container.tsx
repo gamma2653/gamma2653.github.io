@@ -1,8 +1,8 @@
-import { mergeClasses } from "../util";
+import clsx from 'clsx'
 
 export default function Container(props: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={mergeClasses("container", props.className)}>
+    <div className={clsx("container", props.className)}>
       {props.children}
     </div>
   );

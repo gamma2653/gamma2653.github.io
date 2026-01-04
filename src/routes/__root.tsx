@@ -23,17 +23,13 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <html>
+    <>
       {/* <link rel="stylesheet" href="/styles.css" /> */}
-      <head>
-        <HeadContent />
-      </head>
+      <HeadContent />
       {/* <Head title="Christopher De Jesus's Portfolio" /> */}
-      <body>
-        <Navbar />
-        <Outlet />
-        <TanStackRouterDevtools position="bottom-right" />
-      </body>
-    </html>
+      <Navbar />
+      <Outlet />
+      <TanStackRouterDevtools position="bottom-right" />
+    </>
   )
 }
