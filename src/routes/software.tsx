@@ -65,11 +65,54 @@ function RouteComponent() {
                 3. Magiteknician (Godot game)
               </h1></a>
               <p className='text-sm font-semibold mb-2'>
-                Technologies used: <a href="https://reactjs.org/">Godot</a>
+                Technologies used: <a href="https://godotengine.org/">Godot Engine</a>, <a href="https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/index.html">GDScript</a>
               </p>
               <div className='mt-4'>
                   <p className="2xl:pl-100 2xl:pr-100 xl:pl-50 xl:pr-50 sm:pl-0 sm:pr-0">
-                    
+                    Magiteknician is a rhythm game built with the Godot Engine, inspired by osu!
+                  </p>
+                  <p className="2xl:pl-100 2xl:pr-100 xl:pl-50 xl:pr-50 sm:pl-0 sm:pr-0">
+                    This community-driven project implements engaging rhythm game mechanics using Godot's native GDScript language, combining music, timing, and interactive gameplay.
+                  </p>
+                  <p className="2xl:pl-100 2xl:pr-100 xl:pl-50 xl:pr-50 sm:pl-0 sm:pr-0">
+                    The project demonstrates game development skills and showcases the capabilities of the Godot Engine for creating interactive entertainment experiences.
+                  </p>
+              </div>
+            </div>
+
+            <div className='mt-8'>
+              <a href="https://github.com/gamma2653/StoryBoardWorkshop" className="no-underline"><h1 className='text-2xl font-extrabold'>
+                4. StoryBoardWorkshop
+              </h1></a>
+              <p className='text-sm font-semibold mb-2'>
+                Technologies used: <a href="https://www.java.com/">Java</a>, <a href="https://www.eclipse.org/">Eclipse IDE</a>
+              </p>
+              <div className='mt-4'>
+                  <p className="2xl:pl-100 2xl:pr-100 xl:pl-50 xl:pr-50 sm:pl-0 sm:pr-0">
+                    StoryBoardWorkshop is a Java-based application developed for creative storytelling and storyboard planning.
+                  </p>
+                  <p className="2xl:pl-100 2xl:pr-100 xl:pl-50 xl:pr-50 sm:pl-0 sm:pr-0">
+                    This project showcases object-oriented programming principles and GUI development in Java, providing tools for organizing and visualizing narrative structures.
+                  </p>
+              </div>
+            </div>
+
+            <div className='mt-8'>
+              <a href="https://github.com/gamma2653/BlockHider" className="no-underline"><h1 className='text-2xl font-extrabold'>
+                5. BlockHider (Minecraft Plugin)
+              </h1></a>
+              <p className='text-sm font-semibold mb-2'>
+                Technologies used: <a href="https://www.java.com/">Java</a>, <a href="https://www.spigotmc.org/">Spigot/Bukkit API</a>, <a href="https://maven.apache.org/">Maven</a>
+              </p>
+              <div className='mt-4'>
+                  <p className="2xl:pl-100 2xl:pr-100 xl:pl-50 xl:pr-50 sm:pl-0 sm:pr-0">
+                    BlockHider is a Minecraft server plugin that implements a hide-and-seek gameplay mode.
+                  </p>
+                  <p className="2xl:pl-100 2xl:pr-100 xl:pl-50 xl:pr-50 sm:pl-0 sm:pr-0">
+                    Built using the Spigot/Bukkit API, this plugin demonstrates plugin architecture design, event handling, and game mechanics implementation within the Minecraft ecosystem.
+                  </p>
+                  <p className="2xl:pl-100 2xl:pr-100 xl:pl-50 xl:pr-50 sm:pl-0 sm:pr-0">
+                    The project showcases the ability to extend existing platforms with custom functionality and create engaging multiplayer experiences.
                   </p>
               </div>
             </div>
