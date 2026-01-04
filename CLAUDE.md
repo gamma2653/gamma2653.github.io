@@ -91,6 +91,7 @@ Key routes:
 - Deployed to GitHub Pages via `gh-pages` package
 - Production build goes to `dist/` directory
 - GitHub Actions workflow at `.github/workflows/static.yml` handles deployment
+- **IMPORTANT**: Pushing changes to the remote repository (via `git push`) triggers the GitHub Actions workflow and deploys changes live to the website
 - Uses memory history routing to work with GitHub Pages static hosting
 
 ## Important Notes
