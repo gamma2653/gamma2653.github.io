@@ -27,7 +27,7 @@ export default function Banner({img, imgDark, to, caption, text_overlay, classNa
         {caption && <p className={clsx("text-center mt-2", classNames?.div_a_caption)}>{caption}</p>}
         {/* Overlay text on image */}
         {text_overlay &&
-          <div style={{transform: "translate(-50%, -50%)"}} className={clsx("absolute top-1/2 left-1/2 p-2", classNames?.div_a_text_overlay)}>
+          <div className={clsx("absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-2", classNames?.div_a_text_overlay)}>
             <h2 className="text-4xl font-bold drop-shadow-lg">{text_overlay}</h2>
           </div>
         }
