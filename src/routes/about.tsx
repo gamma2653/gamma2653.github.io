@@ -20,33 +20,33 @@ function RouteComponent() {
   return (
     <Page>
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-4 text-center">About Me</h1>
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-center">About Me</h1>
 
         {/* Introduction */}
-        <div className="mb-12">
-          <p className="text-lg text-gray-700 dark:text-gray-300 mt-4 text-center leading-relaxed">
+        <div className="mb-8 sm:mb-12">
+          <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mt-3 sm:mt-4 text-center leading-relaxed">
             Hello, and thank you for your interest in learning more about me.
           </p>
-          <p className="text-lg text-gray-700 dark:text-gray-300 mt-4 text-center leading-relaxed">
+          <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mt-3 sm:mt-4 text-center leading-relaxed">
             My professional journey has been a fascinating blend of technology, innovation, and a continuous quest to understand the intricacies of human cognition and computation. Since my early years in the Bronx, New York, where I was born and raised, I've been driven by a curiosity about how things work—particularly how the human brain processes information.
           </p>
-          <p className="text-lg text-gray-700 dark:text-gray-300 mt-4 text-center leading-relaxed">
+          <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mt-3 sm:mt-4 text-center leading-relaxed">
             I'm currently seeking opportunities to apply my knowledge of <span className="font-semibold text-gray-900 dark:text-gray-100">computational psychology and information processing</span> to solve complex problems at the intersection of technology and human cognition.
           </p>
         </div>
 
         {/* Education */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-6 text-center">Education</h2>
-          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-md">
-            <h3 className="text-xl font-bold text-center mb-2">Cornell University</h3>
-            <p className="text-center text-gray-600 dark:text-gray-400 mb-4">B.A. in Psychology, Minor in Computer Science • May 2023</p>
-            <p className="text-gray-700 dark:text-gray-300 mb-4">
+        <div className="mb-8 sm:mb-12">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6 text-center">Education</h2>
+          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 sm:p-6 shadow-md">
+            <h3 className="text-lg sm:text-xl font-bold text-center mb-2">Cornell University</h3>
+            <p className="text-sm sm:text-base text-center text-gray-600 dark:text-gray-400 mb-3 sm:mb-4">B.A. in Psychology, Minor in Computer Science • May 2023</p>
+            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-3 sm:mb-4">
               My academic path was enriched by courses ranging from Developmental Psychology to Neural Circuits for Social Behavior and Foundations of Artificial Intelligence.
             </p>
-            <div className="mt-4">
-              <p className="font-semibold text-gray-900 dark:text-gray-100 mb-2">Influential Courses & Professors:</p>
-              <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
+            <div className="mt-3 sm:mt-4">
+              <p className="text-sm sm:text-base font-semibold text-gray-900 dark:text-gray-100 mb-2">Influential Courses & Professors:</p>
+              <ul className="list-disc list-inside space-y-1 text-sm sm:text-base text-gray-700 dark:text-gray-300">
                 <li><span className="font-semibold">Computational Psychology</span> (Shimon Edelman) - particularly fascinated by dimensional reduction</li>
                 <li><span className="font-semibold">Operating Systems & Practicum</span> (Robbert van Renesse)</li>
                 <li><span className="font-semibold">Functional Programming</span> (Nate Foster)</li>
@@ -57,14 +57,14 @@ function RouteComponent() {
         </div>
 
         {/* Skills */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-6 text-center">Technical Skills</h2>
-          <div className="space-y-4">
+        <div className="mb-8 sm:mb-12">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6 text-center">Technical Skills</h2>
+          <div className="space-y-3 sm:space-y-4">
             {skills.map((skill) => (
               <div key={skill.name}>
                 <div className="flex justify-between mb-1">
-                  <span className="text-base font-medium text-gray-700 dark:text-gray-300">{skill.name}</span>
-                  <span className="text-sm font-medium text-gray-500 dark:text-gray-400">{skill.level}/10</span>
+                  <span className="text-sm sm:text-base font-medium text-gray-700 dark:text-gray-300">{skill.name}</span>
+                  <span className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">{skill.level}/10</span>
                 </div>
                 <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
                   <div
@@ -75,43 +75,43 @@ function RouteComponent() {
               </div>
             ))}
           </div>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-4 text-center italic">
+          <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-3 sm:mt-4 text-center italic">
             * Java: deep but outdated knowledge
           </p>
         </div>
 
         {/* Experience */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-6 text-center">Professional Experience</h2>
-          <div className="space-y-6">
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-md">
-              <h3 className="text-xl font-bold mb-1">Software Engineer</h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-3">aRoboticsCompany • 2023 - June 2025</p>
-              <p className="text-gray-700 dark:text-gray-300">
+        <div className="mb-8 sm:mb-12">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6 text-center">Professional Experience</h2>
+          <div className="space-y-4 sm:space-y-6">
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 sm:p-6 shadow-md">
+              <h3 className="text-lg sm:text-xl font-bold mb-1">Software Engineer</h3>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-2 sm:mb-3">aRoboticsCompany • 2023 - June 2025</p>
+              <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
                 Developed user interfaces for automated robotic systems and established CI/CD pipelines to enhance developer productivity.
               </p>
             </div>
 
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-md">
-              <h3 className="text-xl font-bold mb-1">Contract Data Engineer</h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-3">Tompkins Consolidated Area Transit (TCAT)</p>
-              <p className="text-gray-700 dark:text-gray-300">
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 sm:p-6 shadow-md">
+              <h3 className="text-lg sm:text-xl font-bold mb-1">Contract Data Engineer</h3>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-2 sm:mb-3">Tompkins Consolidated Area Transit (TCAT)</p>
+              <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
                 Led software development initiatives that facilitated NTD reporting, cutting time spent preparing NTD reports in half.
               </p>
             </div>
 
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-md">
-              <h3 className="text-xl font-bold mb-1">Research Aide</h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-3">Cornell Computational Physiology Lab</p>
-              <p className="text-gray-700 dark:text-gray-300">
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 sm:p-6 shadow-md">
+              <h3 className="text-lg sm:text-xl font-bold mb-1">Research Aide</h3>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-2 sm:mb-3">Cornell Computational Physiology Lab</p>
+              <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
                 Explored bio-inspired algorithms and neuromorphic computing, contributing to research at the intersection of neuroscience and computation.
               </p>
             </div>
 
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-md">
-              <h3 className="text-xl font-bold mb-1">Research Assistant</h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-3">Cornell B.A.B.Y. Lab</p>
-              <p className="text-gray-700 dark:text-gray-300">
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 sm:p-6 shadow-md">
+              <h3 className="text-lg sm:text-xl font-bold mb-1">Research Assistant</h3>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-2 sm:mb-3">Cornell B.A.B.Y. Lab</p>
+              <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
                 Contributed to developmental psychology research studying communication development in human infants and songbirds.
               </p>
             </div>
@@ -119,18 +119,18 @@ function RouteComponent() {
         </div>
 
         {/* Achievements */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-6 text-center">Achievements & Activities</h2>
-          <div className="space-y-4 text-gray-700 dark:text-gray-300">
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-md">
-              <h3 className="text-xl font-bold mb-2">Cornell Cup Robotics</h3>
-              <p>
+        <div className="mb-8 sm:mb-12">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6 text-center">Achievements & Activities</h2>
+          <div className="space-y-3 sm:space-y-4 text-gray-700 dark:text-gray-300">
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 sm:p-6 shadow-md">
+              <h3 className="text-lg sm:text-xl font-bold mb-2">Cornell Cup Robotics</h3>
+              <p className="text-sm sm:text-base">
                 Integrated complex modules into the C1C0 robot, developing skills in real-time object detection, facial recognition, and machine learning for autonomous robotics systems.
               </p>
             </div>
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-md">
-              <h3 className="text-xl font-bold mb-2">1st Place - Cornell Animal Health Hackathon</h3>
-              <p>
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 sm:p-6 shadow-md">
+              <h3 className="text-lg sm:text-xl font-bold mb-2">1st Place - Cornell Animal Health Hackathon</h3>
+              <p className="text-sm sm:text-base">
                 Won first place with a project focused on improving clinical workflows through enhanced communication platforms.
               </p>
             </div>
@@ -138,17 +138,17 @@ function RouteComponent() {
         </div>
 
         {/* Personal Interests */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-6 text-center">Beyond Code</h2>
-          <p className="text-lg text-gray-700 dark:text-gray-300 text-center leading-relaxed">
+        <div className="mb-8 sm:mb-12">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6 text-center">Beyond Code</h2>
+          <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 text-center leading-relaxed">
             Outside of my professional work, I enjoy hiking, sound design, music, and tabletop games. I'm currently developing <span className="font-semibold">Campaign Master</span>—a companion application for game masters of tabletop roleplaying games—which exemplifies my passion for creating innovative solutions that blend technology with creative pursuits.
           </p>
         </div>
 
         {/* Connect */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-6 text-center">Let's Connect</h2>
-          <p className="text-lg text-gray-700 dark:text-gray-300 text-center leading-relaxed mb-6">
+        <div className="mb-8 sm:mb-12">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6 text-center">Let's Connect</h2>
+          <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 text-center leading-relaxed mb-4 sm:mb-6">
             I'm always eager to connect with like-minded individuals who share a passion for technology, creativity, and innovation.
           </p>
           <div className="flex justify-center gap-6 flex-wrap">
@@ -175,7 +175,7 @@ function RouteComponent() {
               LinkedIn
             </a>
           </div>
-          <p className="text-center text-gray-600 dark:text-gray-400 mt-6">
+          <p className="text-sm sm:text-base text-center text-gray-600 dark:text-gray-400 mt-4 sm:mt-6">
             Or reach out through the <Link to="/contact" className="text-blue-600 dark:text-blue-400 hover:underline">contact page</Link>!
           </p>
         </div>

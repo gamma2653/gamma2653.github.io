@@ -14,7 +14,7 @@ const App = () => {
       <Banner img={storyboard} to="/software" text_overlay="Software" classNames={{div: "mt-0"}}/>
       <Banner img={c1c0_collage} to="/robotics" text_overlay="Robotics" classNames={{div: "mt-2 mb-2"}} />
       <Banner img={bluestamp_collage} to="/academics" text_overlay="Academics" classNames={{div: "mt-2"}} />
-      <p className="text-md text-gray-500 dark:text-gray-400 mt-2 text-center">
+      <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400 mt-2 text-center leading-relaxed">
         You will find that all of my projects have been oriented towards understanding how information is processed,
         as well as some other hobby related projects.
         From a young age I have always found the experience of life to be fascinating,
@@ -32,7 +32,7 @@ const App = () => {
         in the day and age where we are building "thinking" machines,
         understanding the nature of thought becomes all the more important.
       </p>
-      <p className="text-md text-gray-500 dark:text-gray-400 mt-2 text-center">
+      <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400 mt-2 text-center leading-relaxed">
         Thanks for taking the time to check out my portfolio. Feel free to reach out through the contact page!
       </p>
 

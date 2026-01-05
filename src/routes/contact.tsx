@@ -9,8 +9,8 @@ function RouteComponent() {
   return (
     <Page>
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-4 text-center">Get in Touch</h1>
-        <p className="text-lg text-gray-700 dark:text-gray-300 text-center mb-8 leading-relaxed">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-center">Get in Touch</h1>
+        <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 text-center mb-6 sm:mb-8 leading-relaxed">
           I'd love to hear from you! Fill out the form below and I'll get back to you as soon as possible.
         </p>
 
@@ -25,7 +25,7 @@ function RouteComponent() {
           </iframe>
         </div>
 
-        <p className="text-center text-gray-600 dark:text-gray-400 mt-8">
+        <p className="text-sm sm:text-base text-center text-gray-600 dark:text-gray-400 mt-6 sm:mt-8">
           You can also reach me on{' '}
           <a
             href="https://www.linkedin.com/in/cdejesus26/"
