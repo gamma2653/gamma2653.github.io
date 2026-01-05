@@ -8,8 +8,8 @@ type CollageProps = {
 const Collage = ({ imgs }: CollageProps) => {
     const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
     const img_count = imgs.length;
-    const cols = img_count >= 3 ? 3 : img_count;
-    console.log(`Rendering collage with ${img_count} images in ${cols} columns.`);
+    // const cols = img_count >= 3 ? 3 : img_count;
+    // console.log(`Rendering collage with ${img_count} images in ${cols} columns.`);
 
     const handleImageClick = (img: string, index: number) => {
         setSelectedImage({ src: img, alt: `Collage Image ${index + 1}` });

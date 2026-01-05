@@ -25,10 +25,12 @@ export default function Navbar(props: NavbarProps) {
           <div className="px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex items-center justify-between">
               {/* Logo/Brand - visible on mobile */}
-              <div className="flex items-center gap-2 xl:hidden">
-                <img src={favicon} alt="Logo" className="h-8 w-8 block dark:hidden" />
-                <img src={faviconDark} alt="Logo" className="h-8 w-8 hidden dark:block" />
-              </div>
+              <Link to="/" className="flex items-center gap-2 xl:hidden">
+                <div className="flex items-center gap-2 xl:hidden">
+                  <img src={favicon} alt="Logo" className="h-8 w-8 block dark:hidden" />
+                  <img src={faviconDark} alt="Logo" className="h-8 w-8 hidden dark:block" />
+                </div>
+              </Link>
 
               {/* Desktop Navigation */}
               <ul className={clsx("hidden xl:flex w-full gap-8 2xl:gap-16 items-center", props.classNames?.nav_ul)}>
