@@ -8,6 +8,8 @@ import campaign_master_gui1 from '../assets/images/software/campaign_master_gui1
 import campaign_master_gui2 from '../assets/images/software/campaign_master_gui2.png';
 import campaign_master_gui3 from '../assets/images/software/campaign_master_gui3.png';
 import habitica_resync1 from '../assets/images/software/habitica_resync1.png';
+import habitica_resync2 from '../assets/images/software/habitica_resync2.png';
+import habitica_resync3 from '../assets/images/software/habitica_resync3.png';
 
 export const Route = createFileRoute('/software')({
   component: RouteComponent,
@@ -60,7 +62,7 @@ function RouteComponent() {
                     This plugin allows users to manage their tasks in Obsidian while keeping them synchronized with their Habitica account, combining the benefits of both platforms for enhanced productivity and gamification.
                   </p>
               </div>
-              <Collage imgs={[habitica_resync1]} />
+              <Collage imgs={[habitica_resync1, habitica_resync2, habitica_resync3]} />
             </div>
 
             <div className='mt-6 sm:mt-8'>
