@@ -4,6 +4,9 @@ import Collage from '../components/collage';
 // import { CaptionedImage } from '../components/image';
 import campaign_master1 from '../assets/images/software/campaign_master1.png';
 import campaign_master2 from '../assets/images/software/campaign_master2.png';
+import campaign_master_gui1 from '../assets/images/software/campaign_master_gui1.png';
+import campaign_master_gui2 from '../assets/images/software/campaign_master_gui2.png';
+import campaign_master_gui3 from '../assets/images/software/campaign_master_gui3.png';
 import habitica_resync1 from '../assets/images/software/habitica_resync1.png';
 
 export const Route = createFileRoute('/software')({
@@ -37,7 +40,7 @@ function RouteComponent() {
                     Crucially, I plan to make it MCP-compliant.
                   </p>
               </div>
-              <Collage imgs={[campaign_master1, campaign_master2]} />
+              <Collage imgs={[campaign_master_gui1, campaign_master_gui2, campaign_master_gui3, campaign_master1, campaign_master2]} />
             </div>
             <div className='mt-6 sm:mt-8'>
               <a href="https://github.com/gamma2653/habitica-resync" className="no-underline"><h2 className='text-lg sm:text-xl lg:text-2xl font-extrabold'>
