@@ -4,7 +4,7 @@ Welcome to my personal portfolio website showcasing my work at the intersection 
 
 ## About This Portfolio
 
-I'm Christopher De Jesus, a Cornell University graduate with a background in Psychology and Computer Science. My work explores how information is processed—both in human minds and in machines. I'm fascinated by computational psychology and the parallels between human cognition and artificial intelligence.
+I'm Christopher De Jesus, a Cornell University graduate with a background in Psychology and Computer Science. My work explores how information is processed in both human minds and in machines. I'm fascinated by computational psychology and the parallels between human cognition and artificial intelligence.
 
 ## What You'll Find Here
 
@@ -42,7 +42,7 @@ Research projects exploring cognition and development:
 
 ### About Me
 
-Learn about my journey from the Bronx to Cornell University, my education, professional experience, technical skills, and interests beyond code—including hiking, sound design, music, and tabletop games.
+Learn about my journey from the Bronx to Cornell University, my education, professional experience, technical skills, and interests beyond code including hiking, sound design, music, and tabletop games.
 
 ### Contact
 
