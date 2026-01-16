@@ -53,29 +53,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-  # build:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout your repository using git
-  #       uses: actions/checkout@v4
-  #     - name: Install and build
-  #       run: |
-  #         npm install
-  #         npm run build
-  #     - name: Upload artifact
-  #       uses: actions/upload-artifact@v6
-  #       with:
-  #         name: github-pages
-  #         path: ./dist
-
-
-  # deploy:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   environment:
-  #     name: github-pages
-  #     url: ${{ steps.deployment.outputs.page_url }}
-  #   steps:
-  #     - name: Deploy to GitHub Pages
-  #       id: deployment
-  #       uses: actions/deploy-pages@v4
