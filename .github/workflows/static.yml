@@ -54,6 +54,7 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: site
+          path: ./dist
 
 
   deploy:
