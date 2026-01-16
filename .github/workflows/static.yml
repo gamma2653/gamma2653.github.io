@@ -51,7 +51,7 @@ jobs:
           npm install
           npm run build
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v6
         with:
           name: site
 
