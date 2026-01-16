@@ -50,6 +50,10 @@ jobs:
         run: |
           npm install
           npm run build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: site
 
 
   deploy:
@@ -62,3 +66,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact-name: site
