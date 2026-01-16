@@ -31,6 +31,7 @@ const App = () => {
         With this lens, the intersection and value of studying psychology and computer science together becomes apparent:
         in the day and age where we are building "thinking" machines,
         understanding the nature of thought becomes all the more important.
+        (Deployment test)
       </p>
       <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400 mt-2 text-center leading-relaxed">
         Thanks for taking the time to check out my portfolio. Feel free to reach out through the contact page!
