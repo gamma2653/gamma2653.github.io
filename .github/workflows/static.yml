@@ -53,7 +53,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v6
         with:
-          name: site
+          name: github-pages
           path: ./dist
 
 
@@ -61,7 +61,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     environment:
-      name: site
+      name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
