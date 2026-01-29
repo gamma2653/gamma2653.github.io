@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import Page from '../components/page';
+import aroboLogo from '../assets/images/arobo_logo.png';
 
 export const Route = createFileRoute('/robotics')({
   component: RouteComponent,
@@ -15,6 +16,29 @@ function RouteComponent() {
             </div>
             <div className='mb-6 sm:mb-8'>
                 <p className="text-sm sm:text-base leading-relaxed">I contributed to several projects as part of Cornell Cup Robotics, a student project team focused on building autonomous robots.</p>
+            </div>
+
+            <div className='mb-6 sm:mb-8'>
+              <a href="https://www.aroboticscompany.com/" className="no-underline">
+                <img src={aroboLogo} alt="aRoboticsCompany logo" className="mx-auto mb-4 h-24 sm:h-32 object-contain" />
+                <h2 className='text-lg sm:text-xl lg:text-2xl font-extrabold'>
+                  aRoboticsCompany
+                </h2>
+              </a>
+              <p className='text-xs sm:text-sm font-semibold mb-2'>
+                Focus: Civil Inspection Robotics
+              </p>
+              <div className='mt-3 sm:mt-4'>
+                  <p className="text-sm sm:text-base leading-relaxed">
+                    Worked at aRoboticsCompany, a company focused on civil inspection robotics.
+                  </p>
+                  <p className="text-sm sm:text-base leading-relaxed">
+                    My contributions included developing CAN bus communication systems for reliable inter-module data exchange, and LWIR (Long-Wave Infrared) image processing for thermal imaging applications used in infrastructure inspection.
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-4 italic">
+                    Disclaimer: This website and its content are not endorsed by nor affiliated with aRoboticsCompany.
+                  </p>
+              </div>
             </div>
 
             <div>
