@@ -4,7 +4,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 type ImageModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  imageSrc: string;
+  imageSrc: string | null;
   imageAlt: string;
 }
 
@@ -25,7 +25,7 @@ export default function ImageModal({ isOpen, onClose, imageSrc, imageAlt }: Imag
             </button>
 
             <img
-              src={imageSrc}
+              src={imageSrc ?? undefined}
               alt={imageAlt}
               className="w-full h-auto max-h-[90vh] object-contain rounded-lg"
             />

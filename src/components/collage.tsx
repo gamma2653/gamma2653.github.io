@@ -50,7 +50,7 @@ const Collage = ({ imgs }: CollageProps) => {
                 <ImageModal
                     isOpen={selectedImage !== null}
                     onClose={closeModal}
-                    imageSrc={selectedImage?.src || ''}
+                    imageSrc={selectedImage?.src ?? null}
                     imageAlt={selectedImage?.alt || ''}
                 />
             </>
@@ -75,7 +75,7 @@ const Collage = ({ imgs }: CollageProps) => {
                 <ImageModal
                     isOpen={selectedImage !== null}
                     onClose={closeModal}
-                    imageSrc={selectedImage?.src || ''}
+                    imageSrc={selectedImage?.src ?? null}
                     imageAlt={selectedImage?.alt || ''}
                 />
             </>
@@ -100,7 +100,7 @@ const Collage = ({ imgs }: CollageProps) => {
                 <ImageModal
                     isOpen={selectedImage !== null}
                     onClose={closeModal}
-                    imageSrc={selectedImage?.src || ''}
+                    imageSrc={selectedImage?.src ?? null}
                     imageAlt={selectedImage?.alt || ''}
                 />
             </>
