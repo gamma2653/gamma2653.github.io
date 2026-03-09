@@ -24,11 +24,13 @@ export default function ImageModal({ isOpen, onClose, imageSrc, imageAlt }: Imag
               <XMarkIcon className="h-8 w-8" />
             </button>
 
-            <img
-              src={imageSrc ?? undefined}
-              alt={imageAlt}
-              className="w-full h-auto max-h-[90vh] object-contain rounded-lg"
-            />
+            {imageSrc != null && (
+              <img
+                src={imageSrc}
+                alt={imageAlt}
+                className="w-full h-auto max-h-[90vh] object-contain rounded-lg"
+              />
+            )}
           </DialogPanel>
         </div>
       </div>
