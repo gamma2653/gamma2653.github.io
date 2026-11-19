@@ -58,7 +58,7 @@ Get in touch through the [contact form](https://gamma2653.github.io/) or connect
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) with dark mode support
 - **UI Components:** [Headless UI](https://headlessui.com/) and [Heroicons](https://heroicons.com/)
 - **Bundler:** [Rsbuild](https://rsbuild.dev/) (Rspack-based)
-- **Testing:** [Rstest](https://rstest.dev/) with React Testing Library
+- **Testing:** [Rstest](https://rstest.rs/) with React Testing Library
 - **Deployment:** [GitHub Pages](https://pages.github.com/) via GitHub Actions
 
 ## Development
