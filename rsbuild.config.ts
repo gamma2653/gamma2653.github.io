@@ -27,6 +27,8 @@ export default defineConfig({
     //     tsconfigPath: 'tsconfig.json',
     },
   html: {
+    // Custom template only to declare the document language.
+    template: './src/template.html',
     favicon: 'src/assets/images/favicon.png',
     title: SITE.title,
     // Site-wide social tags are static: URL fragments (/#/about) are never

@@ -29,7 +29,7 @@ export default function EarlierWork({ projects }: EarlierWorkProps) {
               ) : (
                 title
               )}
-              {year && <span className="ml-2 text-xs font-normal text-gray-500 dark:text-gray-400">{year}</span>}
+              {year && <span className="ml-2 text-xs font-normal text-gray-600 dark:text-gray-400">{year}</span>}
             </p>
             <p className="min-w-0 flex-1 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{blurb}</p>
             <ul aria-label={`${title} technologies`} className="mt-2 sm:mt-0 flex shrink-0 flex-wrap gap-1.5">

@@ -37,7 +37,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         <div
           data-testid="project-thumbnail-placeholder"
           aria-hidden="true"
-          className="flex aspect-video w-full items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-700 font-display text-sm font-medium uppercase tracking-widest text-gray-400 dark:text-gray-500"
+          className="flex aspect-video w-full items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-700 font-display text-sm font-medium uppercase tracking-widest text-gray-600 dark:text-gray-300"
         >
           {CATEGORY_LABELS[category]}
         </div>
