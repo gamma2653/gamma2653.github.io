@@ -60,6 +60,15 @@ describe('CaseStudyCard (full)', () => {
     }
   });
 
+  test('renders a link once when a study link repeats a covered repository', () => {
+    const repo = 'https://github.com/cornell-cup/c1c0-scheduler';
+    render(<CaseStudyCard study={{ ...study, links: [{ label: 'Scheduler source', href: repo }, ...study.links] }} />);
+    const hrefs = screen.getAllByRole('link').map((link) => link.getAttribute('href'));
+    expect(hrefs.filter((href) => href === repo)).toHaveLength(1);
+    expect(screen.getByRole('link', { name: 'C1C0 Scheduler repository' })).toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: 'Scheduler source' })).not.toBeInTheDocument();
+  });
+
   test('shows the screenshots as a collage', () => {
     render(<CaseStudyCard study={study} />);
     const images = screen.getAllByRole('img');

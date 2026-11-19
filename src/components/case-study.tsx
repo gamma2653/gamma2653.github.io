@@ -15,12 +15,17 @@ const externalLink = { target: '_blank', rel: 'noopener noreferrer' } as const;
 
 const COMPACT_TAG_LIMIT = 4;
 
-/** Repositories of the covered projects, then the study's other links. */
+/** Repositories of the covered projects, then the study's other links, one entry per URL. */
 function studyLinks(study: CaseStudy): ProjectLink[] {
   const repos = coveredProjects(study).flatMap((project) =>
     project.repo ? [{ label: `${project.title} repository`, href: project.repo }] : [],
   );
-  return [...repos, ...study.links];
+  const seen = new Set<string>();
+  return [...repos, ...study.links].filter(({ href }) => {
+    if (seen.has(href)) return false;
+    seen.add(href);
+    return true;
+  });
 }
 
 function TagList({ tags }: { tags: string[] }) {
