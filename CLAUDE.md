@@ -58,6 +58,14 @@ Key routes:
 - `card.tsx` - `Card` surface (`as`, `interactive` hover lift, `reveal` on by default); with `reveal` the `as` tag is a `Reveal` wrapper around the surface
 - `reveal.tsx` - `Reveal` fades/slides content in once on first intersection (uses `src/lib/use-in-view.ts`); shows content immediately without IntersectionObserver or under reduced motion
 - `page-header.tsx` - `PageHeader` renders the page `h1` plus an optional lead paragraph block
+- `tag.tsx` - `Tag` small rounded accent chip used for technology labels
+- `project-card.tsx` - `ProjectCard` renders one `Project` as an interactive `Card` (thumbnail or category placeholder, screenshot strip opening `ImageModal`, tags, repository and other links)
+- `project-grid.tsx` - `ProjectGrid` lays `ProjectCard`s out in a responsive grid (1 column, 2 from `sm`, 3 from `lg`)
+
+### Data
+
+- Projects live in `src/data/projects.ts` as a typed `Project[]`; the Software, Robotics and Academics pages render from it through `projectsByCategory()`
+- To add or change a project, edit that file, not the route JSX
 
 ### Styling
 
