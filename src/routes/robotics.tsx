@@ -5,7 +5,9 @@ import aroboLogo from '../assets/images/arobo_logo.png';
 import Card from '../components/card';
 import PageHeader from '../components/page-header';
 import ProjectGrid from '../components/project-grid';
-import { projectsByCategory } from '../data/projects';
+import CaseStudyCard from '../components/case-study';
+import { caseStudiesByCategory, caseStudyProjectIds } from '../data/case-studies';
+import { standardProjects } from '../data/projects';
 
 export const Route = createFileRoute('/robotics')({
   component: RouteComponent,
@@ -19,6 +21,13 @@ function RouteComponent() {
         <p>My robotics projects combine hardware and software to create interactive systems and explore innovative applications of embedded systems.</p>
         <p>I contributed to several projects as part of Cornell Cup Robotics, a student project team focused on building autonomous robots.</p>
       </PageHeader>
+
+      <h2 className="font-display text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Featured</h2>
+      <div className="mb-10 sm:mb-12 space-y-6 sm:space-y-8">
+        {caseStudiesByCategory('robotics').map((study) => (
+          <CaseStudyCard key={study.id} study={study} />
+        ))}
+      </div>
 
       <Card as="section" className="mb-10 sm:mb-12 max-w-3xl">
         <a href="https://www.aroboticscompany.com/" target="_blank" rel="noopener noreferrer" className="no-underline">
@@ -35,8 +44,8 @@ function RouteComponent() {
         </p>
       </Card>
 
-      <h2 className="font-display text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Cornell Cup Robotics and personal builds</h2>
-      <ProjectGrid projects={projectsByCategory('robotics')} />
+      <h2 className="font-display text-xl sm:text-2xl font-bold mb-4 sm:mb-6">More projects</h2>
+      <ProjectGrid projects={standardProjects('robotics', caseStudyProjectIds('robotics'))} />
     </Page>
   )
 }
