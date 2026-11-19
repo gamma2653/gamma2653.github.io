@@ -11,7 +11,7 @@ export const Route = createFileRoute('/robotics')({
 function RouteComponent() {
   return (
     <Page>
-        <div className='text-center'>
+        <div className='max-w-3xl'>
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">Robotics</h1>
             <div>
                 <p className="text-sm sm:text-base leading-relaxed">My robotics projects combine hardware and software to create interactive systems and explore innovative applications of embedded systems.</p>
@@ -22,7 +22,7 @@ function RouteComponent() {
 
             <div className='mb-6 sm:mb-8'>
               <a href="https://www.aroboticscompany.com/" className="no-underline">
-                <img src={aroboLogo} alt="aRoboticsCompany logo" loading="lazy" decoding="async" className="mx-auto mb-4 h-24 sm:h-32 object-contain" />
+                <img src={aroboLogo} alt="aRoboticsCompany logo" loading="lazy" decoding="async" className="mb-4 h-24 sm:h-32 object-contain" />
                 <h2 className='text-lg sm:text-xl lg:text-2xl font-extrabold'>
                   aRoboticsCompany
                 </h2>

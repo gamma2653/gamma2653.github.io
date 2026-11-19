@@ -10,7 +10,7 @@ export const Route = createFileRoute('/academics')({
 function RouteComponent() {
   return (
     <Page>
-        <div className='text-center'>
+        <div className='max-w-3xl'>
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">Academic & Research Projects</h1>
             <div>
                 <p className="text-sm sm:text-base leading-relaxed">My academic work focuses on computational psychology, data analysis, and applied research in cognitive science and systems analysis.</p>

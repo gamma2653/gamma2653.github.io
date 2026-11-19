@@ -20,7 +20,7 @@ export const Route = createFileRoute('/software')({
 function RouteComponent() {
   return (
     <Page>
-        <div className='text-center'>
+        <div className='max-w-3xl'>
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">Software</h1>
             <div>
                 <p className="text-sm sm:text-base leading-relaxed">I am always actively developing new software projects and improving my coding skills.</p>

@@ -20,7 +20,7 @@ const CaptionedImage = ({
     return (
         <div className={clsx(classNames?.div)}>
             <img src={src} alt={alt} loading="lazy" decoding="async" className={clsx("rounded-lg shadow-md", classNames?.div_img)} />
-            <p className={clsx("text-center mt-2 text-sm text-gray-600", classNames?.div_p)}>{caption}</p>
+            <p className={clsx("text-center mt-2 text-sm text-gray-600 dark:text-gray-400", classNames?.div_p)}>{caption}</p>
         </div>
     );
 }
