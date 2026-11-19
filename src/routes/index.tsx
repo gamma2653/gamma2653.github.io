@@ -1,9 +1,9 @@
 // import './styles.css';
 import Banner from '../components/banner';
 import Page from '../components/page';
-import storyboard from '../assets/images/portfolio/storyboard.png';
-import c1c0_collage from '../assets/images/portfolio/c1c0_collage.jpg';
-import bluestamp_collage from '../assets/images/portfolio/bluestamp_collage.jpg';
+import storyboard from '../assets/images/portfolio/storyboard.webp';
+import c1c0_collage from '../assets/images/portfolio/c1c0_collage.webp';
+import bluestamp_collage from '../assets/images/portfolio/bluestamp_collage.webp';
 import { createFileRoute } from '@tanstack/react-router'
 // import Navbar from '../features/shared/components/nav'
 

@@ -2,14 +2,14 @@ import { createFileRoute } from '@tanstack/react-router'
 import Page from '../components/page';
 import Collage from '../components/collage';
 // import { CaptionedImage } from '../components/image';
-import campaign_master1 from '../assets/images/software/campaign_master1.png';
-import campaign_master2 from '../assets/images/software/campaign_master2.png';
-import campaign_master_gui1 from '../assets/images/software/campaign_master_gui1.png';
-import campaign_master_gui2 from '../assets/images/software/campaign_master_gui2.png';
-import campaign_master_gui3 from '../assets/images/software/campaign_master_gui3.png';
-import habitica_resync1 from '../assets/images/software/habitica_resync1.png';
-import habitica_resync2 from '../assets/images/software/habitica_resync2.png';
-import habitica_resync3 from '../assets/images/software/habitica_resync3.png';
+import campaign_master1 from '../assets/images/software/campaign_master1.webp';
+import campaign_master2 from '../assets/images/software/campaign_master2.webp';
+import campaign_master_gui1 from '../assets/images/software/campaign_master_gui1.webp';
+import campaign_master_gui2 from '../assets/images/software/campaign_master_gui2.webp';
+import campaign_master_gui3 from '../assets/images/software/campaign_master_gui3.webp';
+import habitica_resync1 from '../assets/images/software/habitica_resync1.webp';
+import habitica_resync2 from '../assets/images/software/habitica_resync2.webp';
+import habitica_resync3 from '../assets/images/software/habitica_resync3.webp';
 
 export const Route = createFileRoute('/software')({
   component: RouteComponent,
