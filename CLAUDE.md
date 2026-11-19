@@ -49,21 +49,39 @@ Key routes:
 ### Component Structure
 
 **Layout Components** (in `src/components/`):
-- `page.tsx` - Main page wrapper with consistent padding, dark mode support, and footer
+- `page.tsx` - Main page wrapper: `max-w-5xl` container, page-in transition, and an in-flow footer with the computed year
 - `nav.tsx` - Navigation bar with dropdown menu, dark mode image switching, and project categories
 - `banner.tsx` - Clickable banner images used on home page
 - `collage.tsx` - Image collage component for project showcases
 - `container.tsx` - General container component
 - `image.tsx` - Image wrapper utilities
+- `card.tsx` - `Card` surface (`as`, `interactive` hover lift, `reveal` on by default); with `reveal` the `as` tag is a `Reveal` wrapper around the surface
+- `reveal.tsx` - `Reveal` fades/slides content in once on first intersection (uses `src/lib/use-in-view.ts`); shows content immediately without IntersectionObserver or under reduced motion
+- `page-header.tsx` - `PageHeader` renders the page `h1` plus an optional lead paragraph block
 
 ### Styling
 
-- **Tailwind CSS v4** with PostCSS
+- **Tailwind CSS v4** with PostCSS; there is no Tailwind config file, theme tokens live in the `@theme` block of `src/styles.css`
 - Dark mode support via `dark:` utility classes
 - Responsive breakpoints: `sm:`, `xl:`, `2xl:`
 - Global styles in `src/styles.css`
 - Uses Headless UI for accessible components (Disclosure, etc.)
 - Icons from Heroicons
+
+**Theme tokens** (defined in `src/styles.css`):
+- `accent-50` .. `accent-950` - the accent colour scale (Tailwind's teal). Use it for links, buttons and highlights (`text-accent-*`, `bg-accent-*`, `border-accent-*`, `ring-accent-*`). Do not use `blue-*` or `purple-*`.
+- `gray-50` .. `gray-950` - re-tinted with Tailwind's slate values, so every `gray-*` utility is a cool neutral
+- `font-display` - Space Grotesk Variable, self-hosted through `@fontsource-variable/space-grotesk` (no third-party font requests). Applied to `h1`-`h3` by the base layer.
+- `animate-page-in` - short fade/slide used by `Page` as the route transition
+
+**Base styles**: `body` carries the page background and text colour, `#root` is a full-height flex column (which keeps the footer at the bottom on short pages), and links are accent coloured with no visited colour and an accent `:focus-visible` outline.
+
+**Layout conventions**:
+- `Page` provides a centred `max-w-5xl` container; content inside it is left-aligned (no `text-center` page wrappers)
+- Body text is constrained with `max-w-prose`
+- The footer is a normal in-flow element after `<main>` (never `fixed`) and is hidden when printing
+
+**Motion**: all animation, transitions that move things, and hover transforms must use `motion-safe:` variants (e.g. `motion-safe:animate-page-in`, `motion-safe:hover:-translate-y-1`) so nothing moves under `prefers-reduced-motion: reduce`.
 
 ### Key Patterns
 
