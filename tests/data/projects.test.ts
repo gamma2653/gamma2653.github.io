@@ -1,12 +1,17 @@
 import { expect, test, describe } from '@rstest/core';
 import {
   CATEGORY_LABELS,
+  earlierProjects,
   featuredProjects,
   getProject,
   projects,
   projectsByCategory,
+  standardProjects,
   type ProjectCategory,
 } from '../../src/data/projects';
+import { caseStudies } from '../../src/data/case-studies';
+
+const FILLER = /showcas|demonstrates (the |my )?(ability|skills)|programming skills/i;
 
 const CATEGORIES: ProjectCategory[] = ['software', 'robotics', 'academics'];
 
@@ -99,5 +104,39 @@ describe('projects data', () => {
     const before = projects.map((project) => project.id);
     projectsByCategory('software');
     expect(projects.map((project) => project.id)).toEqual(before);
+  });
+
+  test('the Java and Minecraft projects are in the earlier tier', () => {
+    expect(getProject('storyboard-workshop')?.tier).toBe('earlier');
+    expect(getProject('blockhider')?.tier).toBe('earlier');
+    expect(projects.filter((project) => project.tier === 'earlier')).toHaveLength(2);
+  });
+
+  test('earlierProjects returns only the earlier tier of a category, newest first', () => {
+    expect(earlierProjects('software').map((project) => project.id)).toEqual(['storyboard-workshop', 'blockhider']);
+    expect(earlierProjects('robotics')).toEqual([]);
+    expect(earlierProjects('academics')).toEqual([]);
+  });
+
+  test('standardProjects leaves out the earlier tier and any excluded ids', () => {
+    for (const category of CATEGORIES) {
+      const standard = standardProjects(category);
+      expect(standard.every((project) => project.category === category && project.tier !== 'earlier')).toBe(true);
+      expect(standard.length + earlierProjects(category).length).toBe(projectsByCategory(category).length);
+    }
+    const ids = standardProjects('software', ['campaign-master', 'habitica-resync']).map((project) => project.id);
+    expect(ids).toEqual(['openvchange', 'gamma-plugin-tk', 'magiteknician', 'tcat-service-journal']);
+  });
+
+  test('no blurb or case-study text uses filler phrasing', () => {
+    for (const project of projects) {
+      expect(project.blurb).not.toMatch(FILLER);
+      expect(project.tagline ?? '').not.toMatch(FILLER);
+    }
+    for (const study of caseStudies) {
+      for (const field of [study.summary, study.problem, study.built, study.outcome, study.subtitle ?? '']) {
+        expect(field).not.toMatch(FILLER);
+      }
+    }
   });
 });

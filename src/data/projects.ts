@@ -37,6 +37,8 @@ export type Project = {
   /** Imported asset URLs; images[0] is the thumbnail. */
   images?: string[];
   featured?: boolean;
+  /** 'earlier' moves the project to the compact "Earlier work" row. Absent means 'standard'. */
+  tier?: 'standard' | 'earlier';
 };
 
 export const CATEGORY_LABELS: Record<ProjectCategory, string> = {
@@ -87,7 +89,7 @@ export const projects: Project[] = [
     title: 'Magiteknician',
     tagline: 'Godot rhythm game',
     blurb:
-      'A rhythm game inspired by osu! about casting spells by striking runes in rhythm, with real-time duels against other casters. Built with Godot and GDScript.',
+      'A rhythm game about casting spells: you strike a spell\'s runes in order and in rhythm, at a tempo you choose, and duel other casters in real time. It has a campaign of nine duels, a practice mode and a hosted versus mode. Built with Godot 4.7 and GDScript.',
     category: 'software',
     tags: ['Godot', 'GDScript'],
     year: '2025 - present',
@@ -99,7 +101,7 @@ export const projects: Project[] = [
     title: 'OpenVChange',
     tagline: 'Real-time voice changer',
     blurb:
-      'A real-time voice changer and audio router for Windows. It runs audio from an input device through a chain of effects (gate, filters, EQ, de-esser, compressor and more) and sends the result to an output device.',
+      'A real-time voice changer and audio router for Windows. It runs audio from an input device through a chain of effects (gate, filters, EQ, de-esser, compressor, pitch and formant shifting) and sends the result to an output device. Pointed at a virtual audio cable, the output becomes the microphone of any other application.',
     category: 'software',
     tags: ['Python', 'Audio DSP'],
     year: '2026',
@@ -134,25 +136,27 @@ export const projects: Project[] = [
     id: 'storyboard-workshop',
     title: 'StoryBoardWorkshop',
     blurb:
-      'A Java-based application developed for creative storytelling and storyboard planning, providing tools for organizing and visualizing narrative structures.',
+      'A Java application for creative storytelling and storyboard planning.',
     category: 'software',
     tags: ['Java'],
     year: '2018 - 2019',
     startYear: 2018,
     repo: 'https://github.com/gamma2653/StoryBoardWorkshop',
     images: [storyboard],
+    tier: 'earlier',
   },
   {
     id: 'blockhider',
     title: 'BlockHider',
     tagline: 'Minecraft plugin',
     blurb:
-      'A Minecraft server plugin that implements a hide-and-seek gameplay mode, built using the Spigot/Bukkit API.',
+      'A Minecraft server plugin that adds a hide-and-seek game mode, built on the Spigot/Bukkit API.',
     category: 'software',
     tags: ['Java', 'Spigot/Bukkit', 'Maven'],
     year: '2016',
     startYear: 2016,
     repo: 'https://github.com/gamma2653/BlockHider',
+    tier: 'earlier',
   },
 
   // Robotics
@@ -199,7 +203,7 @@ export const projects: Project[] = [
     id: 'phone-controlled-robot',
     title: 'Phone-Controlled Robot Arm',
     blurb:
-      'A phone-controlled robot arm built with Arduino and C++, controlled wirelessly over Bluetooth. It updates an original design by Dejan from howtomechatronics.com, fixing HC-06 serial handling by adding line delimiters and refactoring the code.',
+      'An Arduino robot arm controlled from a phone over Bluetooth. It updates an original design by Dejan from howtomechatronics.com: serial data from the HC-06 module had no indication of where one line ended and the next began, so this version adds line delimiters and tidies the code.',
     category: 'robotics',
     tags: ['Arduino', 'C++'],
     year: '2020',
@@ -217,7 +221,7 @@ export const projects: Project[] = [
     title: 'C1C0 Sounds',
     tagline: 'Morse code to dynamic chirps',
     blurb:
-      'A small script for converting Morse code into dynamic audio chirps, created as a demo experiment for the C1C0 robot.',
+      'A small script that converts Morse code into dynamic chirps, written as a demo experiment for the C1C0 robot.',
     category: 'robotics',
     tags: ['Python'],
     year: '2022',
@@ -258,6 +262,22 @@ export function projectsByCategory(category: ProjectCategory): Project[] {
         Number(b.featured ?? false) - Number(a.featured ?? false) ||
         (b.startYear ?? -Infinity) - (a.startYear ?? -Infinity),
     );
+}
+
+/**
+ * Projects for a category's main grid: everything in `projectsByCategory`
+ * except the 'earlier' tier and any id in `excludeIds` (for example the
+ * projects a case study already covers).
+ */
+export function standardProjects(category: ProjectCategory, excludeIds: string[] = []): Project[] {
+  return projectsByCategory(category).filter(
+    (project) => project.tier !== 'earlier' && !excludeIds.includes(project.id),
+  );
+}
+
+/** The 'earlier' tier of a category, newest first. */
+export function earlierProjects(category: ProjectCategory): Project[] {
+  return projectsByCategory(category).filter((project) => project.tier === 'earlier');
 }
 
 export function featuredProjects(): Project[] {
