@@ -34,8 +34,10 @@ Uses **TanStack Router** with file-based routing:
 
 - Routes are defined in `src/routes/` directory
 - TanStack Router plugin auto-generates route tree at `src/routeTree.gen.ts`
-- **Memory history** is used instead of browser history (see `src/main.tsx:7-11`) for GitHub Pages compatibility
-- Root route at `src/routes/__root.tsx` contains the layout with Navbar and meta tags
+- **Hash history** is used (created by `createAppRouter()` in `src/router.tsx`, mounted in `src/main.tsx`), so URLs look like `https://gamma2653.github.io/#/about` and deep links, refresh and Back/Forward all work on GitHub Pages
+- Root route at `src/routes/__root.tsx` contains the layout with Navbar and the default document title
+- Per-route titles are set with the route's `head` option and `pageTitle()` from `src/lib/site.ts`
+- Site-wide description and Open Graph/Twitter tags are static in the `html` section of `rsbuild.config.ts` (values from `SITE` in `src/lib/site.ts`), because URL fragments are never sent to crawlers; the share image is `public/og-image.png`
 - Route files export a `Route` constant created via `createFileRoute()`
 
 Key routes:
@@ -71,12 +73,14 @@ Key routes:
    ```tsx
    export const Route = createFileRoute('/path')({
      component: RouteComponent,
+     head: () => ({ meta: [{ title: pageTitle('Page Name') }] }),
    })
    ```
+   Keep the `head` property when rewriting a route; `pageTitle` comes from `src/lib/site.ts`.
 
 3. **TypeScript**: Full TypeScript throughout, with strict mode enabled
 
-4. **Router Configuration**: Uses memory history instead of browser history for GitHub Pages static hosting compatibility
+4. **Router Configuration**: Uses hash history (`createHashHistory`, see `src/router.tsx`) instead of browser history, because GitHub Pages only serves `index.html` at the root. Routes live in the URL fragment (`/#/about`), so they are shareable and survive a refresh
 
 5. **Internal Navigation**: **CRITICAL** - Always use TanStack Router's `Link` component for internal navigation instead of anchor tags:
    ```tsx
@@ -85,10 +89,10 @@ Key routes:
    // Good - uses Link component for client-side routing
    <Link to="/contact">Contact</Link>
 
-   // Bad - DOES NOT WORK with MemoryHistory
+   // Bad - requests /contact from GitHub Pages and 404s
    <a href="/contact">Contact</a>
    ```
-   Because this project uses MemoryHistory (not browser history), anchor tags with `href` attributes **will not work** for internal navigation. They must be `Link` components with `to` props. Only use `<a>` tags for external URLs (e.g., `https://github.com/...`).
+   Because this project uses hash history, a raw `<a href="/contact">` asks GitHub Pages for `/contact`, which does not exist and returns a 404. Internal links must be `Link` components with `to` props, which resolve to `/#/contact`. Only use `<a>` tags for external URLs (e.g., `https://github.com/...`).
 
 ## Testing
 
@@ -103,7 +107,7 @@ Key routes:
 - Pushing to `master` triggers the workflow, which runs the tests, builds, and publishes the `dist/` artifact to GitHub Pages
 - Production build goes to `dist/`, which is gitignored and must **never** be committed
 - `npm run deploy` (`gh-pages` package) is a manual alternative to the workflow
-- Uses memory history routing to work with GitHub Pages static hosting
+- Uses hash history routing (`/#/about`) so deep links and refresh work with GitHub Pages static hosting
 
 ## Important Notes
 
