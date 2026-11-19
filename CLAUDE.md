@@ -62,8 +62,8 @@ Key routes:
 ### Styling
 
 - **Tailwind CSS v4** with PostCSS; there is no Tailwind config file, theme tokens live in the `@theme` block of `src/styles.css`
-- Dark mode support via `dark:` utility classes
-- Responsive breakpoints: `sm:`, `xl:`, `2xl:`
+- Dark mode is class-based: `@custom-variant dark` in `src/styles.css` makes every `dark:` utility follow a `.dark` class on `<html>`. `ThemeToggle` (`src/components/theme-toggle.tsx`) switches it through `src/lib/theme.ts`, which persists the choice in localStorage key `theme` and follows the OS (`prefers-color-scheme`) until the user toggles
+- Responsive breakpoints: `sm:`, `md:`, `lg:`; the nav goes horizontal at `md:` and collapses behind a menu button below it
 - Global styles in `src/styles.css`
 - Uses Headless UI for accessible components (Disclosure, etc.)
 - Icons from Heroicons
@@ -85,7 +85,7 @@ Key routes:
 
 ### Key Patterns
 
-1. **Dark Mode Images**: Navbar uses separate light/dark mode images with `block dark:hidden` and `hidden dark:block` classes (see `src/components/nav.tsx:49-56`)
+1. **Dark Mode Images**: The navbar brand renders the logo as a light/dark pair (`favicon.png` with `block dark:hidden`, `favicon_darkmode.png` with `hidden dark:block`); use the same pair of classes for any image that needs a dark variant
 
 2. **Route Structure**: Each route file follows this pattern:
    ```tsx
