@@ -41,8 +41,8 @@ Uses **TanStack Router** with file-based routing:
 - Route files export a `Route` constant created via `createFileRoute()`
 
 Key routes:
-- `/` - Home page with project category banners
-- `/about` - About page
+- `/` - Home page: hero (name, pitch, photo, Projects/Contact buttons), featured case studies, and category entry points
+- `/about` - About page: narrative sections (hidden in print) around a printable resume region (`<section id="resume">`)
 - `/software`, `/robotics`, `/academics` - Project category pages
 - `/contact` - Contact page
 
@@ -51,7 +51,6 @@ Key routes:
 **Layout Components** (in `src/components/`):
 - `page.tsx` - Main page wrapper: `max-w-5xl` container, page-in transition, and an in-flow footer with the computed year
 - `nav.tsx` - Navigation bar with dropdown menu, dark mode image switching, and project categories
-- `banner.tsx` - Clickable banner images used on home page
 - `collage.tsx` - Image collage component for project showcases
 - `container.tsx` - General container component
 - `image.tsx` - Image wrapper utilities
@@ -60,12 +59,22 @@ Key routes:
 - `page-header.tsx` - `PageHeader` renders the page `h1` plus an optional lead paragraph block
 - `tag.tsx` - `Tag` small rounded accent chip used for technology labels
 - `project-card.tsx` - `ProjectCard` renders one `Project` as an interactive `Card` (thumbnail or category placeholder, screenshot strip opening `ImageModal`, tags, repository and other links)
+- `category-card.tsx` - `CategoryCard` is a `Link` to a category page wrapping an interactive `Card` (image, label, project count); used on the home page
+- `case-study.tsx` - `CaseStudyCard` renders a `CaseStudy` either `full` (problem / what I built / outcome, on category pages) or `compact` (thumbnail, summary and a link to the category page, on the home page)
+- `earlier-work.tsx` - `EarlierWork` compact row of projects with `tier: 'earlier'`
+- `experience-list.tsx` - `ExperienceList` renders resume roles as cards on About
+- `skill-groups.tsx` - `SkillGroups` renders grouped skill tags linked to the projects that use them
+- `print-resume-button.tsx` - `PrintResumeButton` calls `window.print()` to print/save the About resume region
 - `project-grid.tsx` - `ProjectGrid` lays `ProjectCard`s out in a responsive grid (1 column, 2 from `sm`, 3 from `lg`)
 
 ### Data
 
 - Projects live in `src/data/projects.ts` as a typed `Project[]`; the Software, Robotics and Academics pages render from it through `projectsByCategory()`
 - To add or change a project, edit that file, not the route JSX
+- `src/data/case-studies.ts` - the flagship `caseStudies` (problem / what was built / outcome) shown on the home page and at the top of category pages
+- `src/data/resume.ts` - `experience`, `education`, `activities` and `currentRoles()` for the About page and the home hero
+- `src/data/skills.ts` - `skillGroups` and `projectsForSkill()` for the About skills section
+- `src/data/links.ts` - `LINKS` (GitHub, LinkedIn, contact form); use it instead of hard-coding profile URLs
 
 ### Styling
 
