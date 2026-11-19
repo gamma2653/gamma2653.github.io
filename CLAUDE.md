@@ -14,9 +14,13 @@ This is a personal portfolio website for Christopher De Jesus, built as a static
 - `npm run build` - Build for production (outputs to `dist/`)
 - `npm run preview` - Preview production build locally
 - `npm run lint` - Run ESLint
+- `npm run typecheck` - Type-check `src/` and `e2e/` with `tsc`
 - `npm run format` - Format code with Prettier
 - `npm run test` - Run tests with Rstest
 - `npm run test:watch` - Run tests in watch mode
+- `npm run test:e2e` - Run the Playwright end-to-end tests against the production build (run `npm run build` first; `npx playwright install` once to get the browsers)
+- `npm run test:lighthouse` - Run Lighthouse CI against `dist/` (needs Chrome; thresholds in `lighthouserc.json`)
+- `npm run check:dist` - Check the built `dist/` for broken references, missing meta tags and size budgets
 - `npm run deploy` - Deploy to GitHub Pages (runs build first)
 
 ### Build Configuration
@@ -135,11 +139,20 @@ Key routes:
 - Test environment: jsdom
 - Setup file: `rstest.setup.ts`
 - Test files in `tests/` directory
+- End-to-end tests live in `e2e/` as `*.e2e.ts` (Playwright, not picked up by Rstest) and run against `rsbuild preview` in Chromium, Firefox, WebKit and a mobile viewport: every route (deep link, refresh, images, overflow, link targets), navigation, theme toggle, print, and axe WCAG 2.1 A/AA checks in light and dark
+- When adding a route, add it to `PAGES` in `e2e/pages.ts` and to the `url` list in `lighthouserc.json`
+
+## Continuous Integration
+
+- `.github/workflows/ci.yml` runs on every pull request and is called by the deploy workflow: lint + typecheck, unit tests, build + `check:dist`, Playwright (one job per browser project), Lighthouse CI, `npm audit` for production dependencies, and dependency review on pull requests. The `CI passed` job is the single check to require in branch protection
+- `.github/workflows/links.yml` checks external links weekly, and on pull requests that touch `README.md`, `src/data/` or `src/routes/`
+- `.github/dependabot.yml` opens weekly grouped updates for npm packages and GitHub Actions
+- Size budgets are in `scripts/check-dist.mjs`; raise them deliberately when the site legitimately grows
 
 ## Deployment
 
 - Deployed to GitHub Pages by the GitHub Actions workflow at `.github/workflows/static.yml`
-- Pushing to `master` triggers the workflow, which runs the tests, builds, and publishes the `dist/` artifact to GitHub Pages
+- Pushing to `master` triggers the workflow, which runs the full CI suite (`ci.yml`), builds, and publishes the `dist/` artifact to GitHub Pages
 - Production build goes to `dist/`, which is gitignored and must **never** be committed
 - `npm run deploy` (`gh-pages` package) is a manual alternative to the workflow
 - Uses hash history routing (`/#/about`) so deep links and refresh work with GitHub Pages static hosting
