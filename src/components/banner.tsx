@@ -23,9 +23,9 @@ export default function Banner({ img, imgDark, to, caption, text_overlay, classN
     <div className={clsx(classNames?.div)}>
       <Link to={to} className={clsx("relative dark:text-white text-black hover:opacity-75 no-underline", classNames?.div_a)}>
         {!text_overlay &&
-          <img src={img} alt="Banner" className={clsx("object-cover w-full h-80 rounded-xl shadow-md block", imgDark ? "dark:hidden" : "", classNames?.div_a_img)}></img>
+          <img src={img} alt="Banner" loading="lazy" decoding="async" className={clsx("object-cover w-full h-80 rounded-xl shadow-md block", imgDark ? "dark:hidden" : "", classNames?.div_a_img)}></img>
         }
-        {!text_overlay && imgDark && <img src={imgDark} alt="Banner Dark Mode" className={clsx("object-cover w-full h-80 rounded-xl shadow-md hidden dark:block mb-8", classNames?.div_a_imgDark)}></img>}
+        {!text_overlay && imgDark && <img src={imgDark} alt="Banner Dark Mode" loading="lazy" decoding="async" className={clsx("object-cover w-full h-80 rounded-xl shadow-md hidden dark:block mb-8", classNames?.div_a_imgDark)}></img>}
         {caption && <p className={clsx("text-center mt-2", classNames?.div_a_caption)}>{caption}</p>}
         {/* Not using above image banner, use background image on head tag */}
         {text_overlay &&

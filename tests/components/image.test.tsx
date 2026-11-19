@@ -16,6 +16,13 @@ describe('CaptionedImage', () => {
     expect(img).toHaveAttribute('src', '/test-image.jpg');
   });
 
+  test('lazy-loads the image', () => {
+    render(<CaptionedImage {...defaultProps} />);
+    const img = screen.getByAltText('Test image');
+    expect(img).toHaveAttribute('loading', 'lazy');
+    expect(img).toHaveAttribute('decoding', 'async');
+  });
+
   test('renders caption text', () => {
     render(<CaptionedImage {...defaultProps} />);
     expect(screen.getByText('Test caption')).toBeInTheDocument();
