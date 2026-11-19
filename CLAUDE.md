@@ -53,7 +53,6 @@ Key routes:
 - `collage.tsx` - Image collage component for project showcases
 - `container.tsx` - General container component
 - `image.tsx` - Image wrapper utilities
-- `head.tsx` - Head/meta tag management (currently unused in favor of TanStack Router's built-in head support)
 
 ### Styling
 
@@ -100,13 +99,10 @@ Key routes:
 
 ## Deployment
 
-- Deployed to GitHub Pages via `gh-pages` package
-- Production build goes to `dist/` directory
-- GitHub Actions workflow at `.github/workflows/static.yml` handles deployment
-- **IMPORTANT**: To push changes live to the website:
-  1. Run `npm run build` to build the production bundle to `dist/`
-  2. Commit the changes in `dist/` along with source changes
-  3. Push to the remote repository (via `git push`) to trigger the GitHub Actions workflow and deploy changes live
+- Deployed to GitHub Pages by the GitHub Actions workflow at `.github/workflows/static.yml`
+- Pushing to `master` triggers the workflow, which runs the tests, builds, and publishes the `dist/` artifact to GitHub Pages
+- Production build goes to `dist/`, which is gitignored and must **never** be committed
+- `npm run deploy` (`gh-pages` package) is a manual alternative to the workflow
 - Uses memory history routing to work with GitHub Pages static hosting
 
 ## Important Notes
