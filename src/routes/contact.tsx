@@ -1,9 +1,11 @@
+import { pageTitle } from '../lib/site';
 import { createFileRoute } from '@tanstack/react-router'
 import Page from '../components/page';
 import { LINKS } from '../data/links';
 
 export const Route = createFileRoute('/contact')({
   component: RouteComponent,
+  head: () => ({ meta: [{ title: pageTitle('Contact') }] }),
 })
 
 const secondaryOptions = [

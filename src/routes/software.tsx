@@ -1,3 +1,4 @@
+import { pageTitle } from '../lib/site';
 import { createFileRoute } from '@tanstack/react-router'
 import Page from '../components/page';
 import Collage from '../components/collage';
@@ -13,6 +14,7 @@ import habitica_resync3 from '../assets/images/software/habitica_resync3.webp';
 
 export const Route = createFileRoute('/software')({
   component: RouteComponent,
+  head: () => ({ meta: [{ title: pageTitle('Software Projects') }] }),
 })
 
 function RouteComponent() {

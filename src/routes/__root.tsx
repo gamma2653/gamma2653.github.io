@@ -2,6 +2,7 @@ import { Suspense, lazy } from 'react'
 import { HeadContent, Outlet, createRootRoute } from '@tanstack/react-router'
 import '../styles.css'
 import Navbar from '../components/nav';
+import { SITE } from '../lib/site';
 
 // Dev-only: the dynamic import sits behind a build-time constant, so the
 // devtools chunk is dropped from the production bundle entirely.
@@ -16,12 +17,7 @@ const RouterDevtools = import.meta.env.DEV
 export const Route = createRootRoute({
   component: RootComponent,
   head: () => ({
-    meta: [
-      { name: 'description', content: "Christopher De Jesus's Portfolio Website" },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
-      { charSet: 'UTF-8' },
-      { title: "Christopher De Jesus's Portfolio" },
-    ],
+    meta: [{ title: SITE.title }],
   })
 
 })

@@ -1,3 +1,4 @@
+import { pageTitle } from '../lib/site';
 import { createFileRoute, Link } from '@tanstack/react-router'
 import Page from '../components/page';
 import { CaptionedImage } from '../components/image';
@@ -5,6 +6,7 @@ import butter_tasty from '../assets/images/butter_tasty.webp';
 
 export const Route = createFileRoute('/about')({
   component: RouteComponent,
+  head: () => ({ meta: [{ title: pageTitle('About') }] }),
 })
 
 const skills = [

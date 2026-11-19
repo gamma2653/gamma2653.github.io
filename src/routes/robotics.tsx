@@ -1,9 +1,11 @@
+import { pageTitle } from '../lib/site';
 import { createFileRoute } from '@tanstack/react-router'
 import Page from '../components/page';
 import aroboLogo from '../assets/images/arobo_logo.png';
 
 export const Route = createFileRoute('/robotics')({
   component: RouteComponent,
+  head: () => ({ meta: [{ title: pageTitle('Robotics') }] }),
 })
 
 function RouteComponent() {

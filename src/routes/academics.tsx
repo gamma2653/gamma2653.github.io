@@ -1,8 +1,10 @@
+import { pageTitle } from '../lib/site';
 import { createFileRoute } from '@tanstack/react-router'
 import Page from '../components/page';
 
 export const Route = createFileRoute('/academics')({
   component: RouteComponent,
+  head: () => ({ meta: [{ title: pageTitle('Academics & Research') }] }),
 })
 
 function RouteComponent() {
