@@ -5,159 +5,144 @@ import { CaptionedImage } from '../components/image';
 import butter_tasty from '../assets/images/butter_tasty.webp';
 import Card from '../components/card';
 import PageHeader from '../components/page-header';
+import ExperienceList from '../components/experience-list';
+import SkillGroups from '../components/skill-groups';
+import PrintResumeButton from '../components/print-resume-button';
+import { LINKS } from '../data/links';
+import { activities, currentRoles, education, experience, type Role } from '../data/resume';
 
 export const Route = createFileRoute('/about')({
   component: RouteComponent,
   head: () => ({ meta: [{ title: pageTitle('About') }] }),
 })
 
-const skills = [
-  { name: 'Python', level: 10 },
-  { name: 'TypeScript', level: 9 },
-  { name: 'C', level: 9 },
-  { name: 'SQL', level: 8 },
-  { name: 'C++', level: 8 },
-  { name: 'Java', level: 7 },
-];
+const SITE_URL = 'https://gamma2653.github.io';
+
+const sectionHeading = 'font-display text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6 print:text-xl print:mb-2';
+const resumeCard = 'print:shadow-none print:border-0 print:p-0 print:bg-transparent print:break-inside-avoid';
+const bodyText = 'text-sm sm:text-base text-gray-700 dark:text-gray-300 print:text-black';
+const mutedText = 'text-sm sm:text-base text-gray-600 dark:text-gray-400 print:text-black';
+
+/** "a Software Engineer at Tagup and a part-time Founding Engineer at Saga Healthcare Co" */
+function describeRoles(roles: Role[]): string {
+  const parts = roles.map(
+    (role) => `a ${role.partTime ? 'part-time ' : ''}${role.title} at ${role.company}`,
+  );
+  if (parts.length <= 1) return parts.join('');
+  return `${parts.slice(0, -1).join(', ')} and ${parts[parts.length - 1]}`;
+}
 
 function RouteComponent() {
+  const current = currentRoles();
+
   return (
     <Page>
       <div className="max-w-4xl">
-        <PageHeader title="About Me" />
+        <div className="print:hidden">
+          <PageHeader title="About Me" />
+        </div>
 
         {/* Introduction */}
-        <div className="mb-8 sm:mb-12">
+        <div className="mb-8 sm:mb-12 print:hidden">
           <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mt-3 sm:mt-4 max-w-prose leading-relaxed">
             Hello, and thank you for your interest in learning more about me.
           </p>
           <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mt-3 sm:mt-4 max-w-prose leading-relaxed">
             My professional journey has been a fascinating blend of technology, innovation, and a continuous quest to understand the intricacies of human cognition and computation. Since my early years in the Bronx, New York, where I was born and raised, I've been driven by a curiosity about how things work—particularly how the human brain processes information.
           </p>
-          <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mt-3 sm:mt-4 max-w-prose leading-relaxed">
-            I'm currently seeking opportunities to apply my knowledge of <span className="font-semibold text-gray-900 dark:text-gray-100">computational psychology and information processing</span> to solve complex problems at the intersection of technology and human cognition.
-          </p>
-        </div>
-
-        {/* Education */}
-        <div className="mb-8 sm:mb-12">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6">Education</h2>
-          <Card>
-            <h3 className="text-lg sm:text-xl font-bold mb-2">Cornell University</h3>
-            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-3 sm:mb-4">B.A. in Psychology, Minor in Computer Science • May 2023</p>
-            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-3 sm:mb-4">
-              My academic path was enriched by courses ranging from Developmental Psychology to Neural Circuits for Social Behavior and Foundations of Artificial Intelligence.
+          {current.length > 0 && (
+            <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mt-3 sm:mt-4 max-w-prose leading-relaxed">
+              I'm currently {describeRoles(current)}. My background is in <span className="font-semibold text-gray-900 dark:text-gray-100">computational psychology and information processing</span>, and I enjoy problems at the intersection of technology and human cognition.
             </p>
-            <div className="mt-3 sm:mt-4">
-              <p className="text-sm sm:text-base font-semibold text-gray-900 dark:text-gray-100 mb-2">Influential Courses & Professors:</p>
-              <ul className="list-disc list-inside space-y-1 text-sm sm:text-base text-gray-700 dark:text-gray-300">
-                <li><span className="font-semibold">Computational Psychology</span> (Shimon Edelman) - particularly fascinated by dimensional reduction</li>
-                <li><span className="font-semibold">Operating Systems & Practicum</span> (Robbert van Renesse)</li>
-                <li><span className="font-semibold">Functional Programming</span> (Nate Foster)</li>
-                <li><span className="font-semibold">Systems Programming</span> (Ken Birman)</li>
-              </ul>
-            </div>
-          </Card>
+          )}
         </div>
 
-        {/* Skills */}
-        <div className="mb-8 sm:mb-12">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6">Technical Skills</h2>
-          <div className="space-y-3 sm:space-y-4 max-w-prose">
-            {skills.map((skill) => (
-              <div key={skill.name}>
-                <div className="flex justify-between mb-1">
-                  <span className="text-sm sm:text-base font-medium text-gray-700 dark:text-gray-300">{skill.name}</span>
-                  <span className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">{skill.level}/10</span>
-                </div>
-                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                  <div
-                    className="bg-accent-600 dark:bg-accent-400 h-2.5 rounded-full"
-                    style={{ width: `${skill.level * 10}%` }}
-                  ></div>
-                </div>
+        {/* Resume: the only part of this page that prints */}
+        <section id="resume" aria-labelledby="resume-heading" className="print:text-black">
+          <div className="mb-6 sm:mb-8 flex flex-wrap items-center justify-between gap-3 print:hidden">
+            <h2 id="resume-heading" className="font-display text-xl sm:text-2xl lg:text-3xl font-bold">Resume</h2>
+            <PrintResumeButton />
+          </div>
+
+          <div data-testid="resume-print-header" className="hidden print:block mb-6">
+            <p className="font-display text-2xl font-bold">Christopher De Jesus</p>
+            <p className="text-sm">
+              {SITE_URL} · {LINKS.github} · {LINKS.linkedin}
+            </p>
+          </div>
+
+          {/* Experience */}
+          <div className="mb-8 sm:mb-12 print:mb-6">
+            <h2 className={sectionHeading}>Professional Experience</h2>
+            <ExperienceList roles={experience} />
+          </div>
+
+          {/* Education */}
+          <div className="mb-8 sm:mb-12 print:mb-6">
+            <h2 className={sectionHeading}>Education</h2>
+            <Card reveal={false} className={resumeCard}>
+              <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+                <h3 className="font-display text-lg sm:text-xl font-bold">{education.school}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 print:text-black">{education.graduation}</p>
               </div>
-            ))}
-          </div>
-          <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-3 sm:mt-4 italic">
-            * Java: deep but outdated knowledge
-          </p>
-        </div>
-
-        {/* Experience */}
-        <div className="mb-8 sm:mb-12">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6">Professional Experience</h2>
-          <div className="space-y-4 sm:space-y-6">
-            <Card>
-              <h3 className="text-lg sm:text-xl font-bold mb-1">Software Engineer</h3>
-              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-2 sm:mb-3">aRoboticsCompany • 2023 - June 2025</p>
-              <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
-                Developed user interfaces for automated robotic systems and established CI/CD pipelines to enhance developer productivity.
+              <p className={`${mutedText} mt-1`}>{education.degree} · {education.location}</p>
+              <p className={`${bodyText} mt-3`}>
+                <span className="font-semibold">Relevant coursework:</span> {education.coursework.join(', ')}
               </p>
-            </Card>
-
-            <Card>
-              <h3 className="text-lg sm:text-xl font-bold mb-1">Contract Data Engineer</h3>
-              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-2 sm:mb-3">Tompkins Consolidated Area Transit (TCAT)</p>
-              <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
-                Led software development initiatives that facilitated NTD reporting, cutting time spent preparing NTD reports in half.
-              </p>
-            </Card>
-
-            <Card>
-              <h3 className="text-lg sm:text-xl font-bold mb-1">Research Aide</h3>
-              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-2 sm:mb-3">Cornell Computational Physiology Lab</p>
-              <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
-                Explored bio-inspired algorithms and neuromorphic computing, contributing to research at the intersection of neuroscience and computation.
-              </p>
-            </Card>
-
-            <Card>
-              <h3 className="text-lg sm:text-xl font-bold mb-1">Research Assistant</h3>
-              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-2 sm:mb-3">Cornell B.A.B.Y. Lab</p>
-              <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
-                Contributed to developmental psychology research studying communication development in human infants and songbirds.
-              </p>
+              <div className="mt-3 sm:mt-4">
+                <p className="text-sm sm:text-base font-semibold text-gray-900 dark:text-gray-100 print:text-black mb-2">Influential Courses & Professors:</p>
+                <ul className={`list-disc list-inside space-y-1 ${bodyText}`}>
+                  <li><span className="font-semibold">Computational Psychology</span> (Shimon Edelman, my faculty advisor) - particularly fascinated by dimensional reduction</li>
+                  <li><span className="font-semibold">Operating Systems & Practicum</span> (Robbert van Renesse)</li>
+                  <li><span className="font-semibold">Functional Programming</span> (Nate Foster)</li>
+                  <li><span className="font-semibold">Systems Programming</span> (Ken Birman)</li>
+                </ul>
+              </div>
             </Card>
           </div>
-        </div>
 
-        {/* Achievements */}
-        <div className="mb-8 sm:mb-12">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6">Achievements & Activities</h2>
-          <div className="space-y-3 sm:space-y-4 text-gray-700 dark:text-gray-300">
-            <Card>
-              <h3 className="text-lg sm:text-xl font-bold mb-2">Cornell Cup Robotics</h3>
-              <p className="text-sm sm:text-base">
-                Integrated complex modules into the C1C0 robot, developing skills in real-time object detection, facial recognition, and machine learning for autonomous robotics systems.
-              </p>
-            </Card>
-            <Card>
-              <h3 className="text-lg sm:text-xl font-bold mb-2">1st Place - Cornell Animal Health Hackathon</h3>
-              <p className="text-sm sm:text-base">
-                Won first place with a project focused on improving clinical workflows through enhanced communication platforms.
-              </p>
-            </Card>
+          {/* Skills */}
+          <div className="mb-8 sm:mb-12 print:mb-6">
+            <h2 className={sectionHeading}>Technical Skills</h2>
+            <SkillGroups />
           </div>
-        </div>
+
+          {/* Achievements */}
+          <div className="mb-8 sm:mb-12 print:mb-0">
+            <h2 className={sectionHeading}>Achievements & Activities</h2>
+            <div className="space-y-3 sm:space-y-4">
+              {activities.map((activity) => (
+                <Card key={activity.title} reveal={false} className={resumeCard}>
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 mb-2">
+                    <h3 className="font-display text-lg sm:text-xl font-bold">{activity.title}</h3>
+                    {activity.date && (
+                      <p className="text-sm text-gray-600 dark:text-gray-400 print:text-black">{activity.date}</p>
+                    )}
+                  </div>
+                  <p className={bodyText}>{activity.detail}</p>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Personal Interests */}
-        <div className="mb-8 sm:mb-12">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6">Beyond Code</h2>
+        <div className="mb-8 sm:mb-12 print:hidden">
+          <h2 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6">Beyond Code</h2>
           <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 max-w-prose leading-relaxed">
             Outside of my professional work, I enjoy hiking, sound design, music, and tabletop games. I'm currently developing <span className="font-semibold">Campaign Master</span>—a companion application for game masters of tabletop roleplaying games—which exemplifies my passion for creating innovative solutions that blend technology with creative pursuits.
           </p>
         </div>
 
         {/* Connect */}
-        <div className="mb-8 sm:mb-12">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6">Let's Connect</h2>
+        <div className="mb-8 sm:mb-12 print:hidden">
+          <h2 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6">Let's Connect</h2>
           <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 max-w-prose leading-relaxed mb-4 sm:mb-6">
             I'm always eager to connect with like-minded individuals who share a passion for technology, creativity, and innovation.
           </p>
           <div className="flex gap-4 flex-wrap">
             <a
-              href="https://github.com/gamma2653"
+              href={LINKS.github}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 no-underline bg-gray-800 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors shadow-md"
@@ -168,7 +153,7 @@ function RouteComponent() {
               GitHub
             </a>
             <a
-              href="https://www.linkedin.com/in/cdejesus26/"
+              href={LINKS.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 no-underline bg-accent-700 text-white rounded-lg hover:bg-accent-800 dark:hover:bg-accent-600 transition-colors shadow-md"
@@ -185,7 +170,7 @@ function RouteComponent() {
         </div>
 
         <CaptionedImage src={butter_tasty} alt="Hiking Buttermilk Falls" caption="Hiking Buttermilk Falls" classNames={{
-          div: "mt-8 w-fit",
+          div: "mt-8 w-fit print:hidden",
           div_img: "h-100",
         }} />
       </div>
