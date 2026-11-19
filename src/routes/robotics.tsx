@@ -30,7 +30,7 @@ function RouteComponent() {
       </div>
 
       <Card as="section" className="mb-10 sm:mb-12 max-w-3xl">
-        <a href="https://www.aroboticscompany.com/" target="_blank" rel="noopener noreferrer" className="no-underline">
+        <a href="https://arcinc.com" target="_blank" rel="noopener noreferrer" className="no-underline">
           <img src={aroboLogo} alt="aRoboticsCompany logo" loading="lazy" decoding="async" className="mb-4 h-24 sm:h-32 object-contain" />
           <h2 className="font-display text-xl sm:text-2xl font-bold">aRoboticsCompany</h2>
         </a>

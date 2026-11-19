@@ -86,7 +86,7 @@ describe('Robotics Route (/robotics)', () => {
     expect(main.getByAltText('aRoboticsCompany logo')).toHaveAttribute('loading', 'lazy');
     expect(main.getByRole('link', { name: /aRoboticsCompany/ })).toHaveAttribute(
       'href',
-      'https://www.aroboticscompany.com/',
+      'https://arcinc.com',
     );
     expect(main.getByText('Focus: Civil Inspection Robotics')).toBeInTheDocument();
     expect(main.getByText(/CAN bus communication systems/)).toBeInTheDocument();
