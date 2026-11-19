@@ -62,6 +62,17 @@ describe('About Route (/about)', () => {
     expect(main.getByText(/early years in the Bronx/)).toBeInTheDocument();
   });
 
+  test('carries the essay under "Why cognition and computation", outside the printed resume', async () => {
+    const { mainElement, main } = await renderAbout();
+    const essay = main.getByRole('region', { name: 'Why cognition and computation' });
+    expect(within(essay).getByRole('heading', { level: 2, name: 'Why cognition and computation' })).toBeInTheDocument();
+    expect(essay).toHaveTextContent(/computational irreducibility/);
+    expect(essay).toHaveTextContent(/This led me down/);
+    expect(essay).toHaveClass('print:hidden');
+    expect(mainElement.querySelector('#resume')).not.toContainElement(essay);
+    expect(mainElement.textContent!.match(/computational irreducibility/g)).toHaveLength(1);
+  });
+
   test('lists current and past roles with their dates', async () => {
     const { main } = await renderAbout();
     const cardFor = (company: string) =>

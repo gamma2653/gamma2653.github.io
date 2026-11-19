@@ -57,6 +57,33 @@ function RouteComponent() {
           )}
         </div>
 
+        {/* Why cognition and computation */}
+        <section aria-labelledby="why-heading" className="mb-8 sm:mb-12 print:hidden">
+          <h2 id="why-heading" className="font-display text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6">Why cognition and computation</h2>
+          <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 max-w-prose leading-relaxed">
+            You will find that all of my projects have been oriented towards understanding how information is processed,
+            as well as some other hobby related projects.
+            From a young age I have always found the experience of life to be fascinating,
+            how is it that we are able to perceive the present moment? What triggers us into action,
+            and how can we learn to live more in the present?
+          </p>
+          <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mt-3 sm:mt-4 max-w-prose leading-relaxed">
+            This led me down a wide-spanning path of studying a combination of computer science and psychology,
+            and the pleasant surprise of how interconnected these two subjects really are— unexpectedly so.
+            Although clearer to many now with the advent of large AI models,
+            early in my academic career it proved difficult to consolidate what I had learned in these two disparate fields,
+            until it finally clicked. The crux of the connection is simple: computational irreducibility.
+          </p>
+          <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mt-3 sm:mt-4 max-w-prose leading-relaxed">
+            The human brain is a prediction engine; or better to explain my point, a consolidation (reduction) machine.
+            It attempts to create a model, however imperfect it may be, of our experience (evolutionarily for the purpose of homeostasis).
+            Although research is ongoing, I believe this to be a purely cognitive (i.e. computational) process.
+            With this lens, the intersection and value of studying psychology and computer science together becomes apparent:
+            in the day and age where we are building "thinking" machines,
+            understanding the nature of thought becomes all the more important.
+          </p>
+        </section>
+
         {/* Resume: the only part of this page that prints */}
         <section id="resume" aria-labelledby="resume-heading" className="print:text-black">
           <div className="mb-6 sm:mb-8 flex flex-wrap items-center justify-between gap-3 print:hidden">
