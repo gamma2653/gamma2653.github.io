@@ -1,11 +1,12 @@
 import { expect, test, describe } from '@rstest/core';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import {
   createMemoryHistory,
   createRouter,
   RouterProvider,
 } from '@tanstack/react-router';
 import { routeTree } from '../../src/routeTree.gen';
+import { projectsByCategory } from '../../src/data/projects';
 
 function renderRoute(path: string) {
   const router = createRouter({
@@ -16,23 +17,41 @@ function renderRoute(path: string) {
   return render(<RouterProvider router={router} />);
 }
 
+/** The page's <main>, so assertions cannot collide with nav text. */
+async function renderMain(path: string) {
+  renderRoute(path);
+  return within(await screen.findByRole('main'));
+}
+
+const CATEGORY_PROJECTS = projectsByCategory('academics');
+
 describe('Academics Route (/academics)', () => {
   test('renders Academic & Research Projects heading', async () => {
-    renderRoute('/academics');
+    const main = await renderMain('/academics');
     expect(
-      await screen.findByRole('heading', { name: /Academic & Research Projects/ }),
+      main.getByRole('heading', { level: 1, name: 'Academic & Research Projects' }),
     ).toBeInTheDocument();
   });
 
-  test('renders Odor Sampling Model project', async () => {
-    renderRoute('/academics');
-    expect(await screen.findByText(/Odor Sampling Model/)).toBeInTheDocument();
+  test('renders every academics project title as a heading', async () => {
+    const main = await renderMain('/academics');
+    expect(CATEGORY_PROJECTS.length).toBeGreaterThan(0);
+    for (const project of CATEGORY_PROJECTS) {
+      expect(main.getByRole('heading', { level: 3, name: project.title })).toBeInTheDocument();
+    }
   });
 
-  test('renders Cornell B.A.B.Y. Lab section', async () => {
-    renderRoute('/academics');
-    const matches = await screen.findAllByText(/Cornell B\.A\.B\.Y\. Lab/);
-    expect(matches.length).toBeGreaterThan(0);
+  test('renders one article per academics project', async () => {
+    const main = await renderMain('/academics');
+    expect(main.getAllByRole('article')).toHaveLength(CATEGORY_PROJECTS.length);
+  });
+
+  test('links the B.A.B.Y. Lab card to the lab website', async () => {
+    const main = await renderMain('/academics');
+    expect(main.getByRole('link', { name: 'Lab website' })).toHaveAttribute(
+      'href',
+      'https://babylab.cornell.edu',
+    );
   });
 
   test('renders footer', async () => {

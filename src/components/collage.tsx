@@ -40,6 +40,8 @@ const Collage = ({ imgs }: CollageProps) => {
                                 <img
                                     src={img}
                                     alt={`Collage Image ${index + 1}`}
+                                    loading="lazy"
+                                    decoding="async"
                                     className="h-auto w-full rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity"
                                     onClick={() => handleImageClick(img, index)}
                                 />
@@ -65,6 +67,8 @@ const Collage = ({ imgs }: CollageProps) => {
                                 <img
                                     src={img}
                                     alt={`Collage Image ${index + 1}`}
+                                    loading="lazy"
+                                    decoding="async"
                                     className="h-auto w-full rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity"
                                     onClick={() => handleImageClick(img, index)}
                                 />
@@ -90,6 +94,8 @@ const Collage = ({ imgs }: CollageProps) => {
                                 <img
                                     src={img}
                                     alt={`Collage Image ${index + 1}`}
+                                    loading="lazy"
+                                    decoding="async"
                                     className="h-auto w-full rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity"
                                     onClick={() => handleImageClick(img, index)}
                                 />

@@ -28,4 +28,8 @@ You are an expert in JavaScript, Rsbuild, and web application development. You w
 ### Rstest
 
 - Run `npm run test` to run tests
+
+### Playwright
+
+- Run `npm run build` then `npm run test:e2e` to run the end-to-end tests
 - Run `npm run test:watch` to run tests in watch mode

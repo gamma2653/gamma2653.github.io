@@ -29,7 +29,7 @@ A collection of applications and tools I've built:
 
 My work with [Cornell Cup Robotics](https://github.com/cornell-cup) and professional robotics experience:
 
-- **[aRoboticsCompany](https://www.aroboticscompany.com/)** - Civil inspection robotics work including CAN bus communication systems and LWIR image processing
+- **[aRoboticsCompany](https://arcinc.com)** - Civil inspection robotics work including CAN bus communication systems and LWIR image processing
 - **[C1C0 Scheduler](https://github.com/cornell-cup/c1c0-scheduler)** - The communication hub coordinating C1C0's various subsystems, built with Python
 - **[R2 Object Detection](https://github.com/cornell-cup/r2-object_detection)** - Real-time object detection for autonomous robot navigation using TensorFlow and SSD MobileNet V1
 - **[C1C0 Facial Recognition](https://github.com/cornell-cup/c1c0-facial-recognition)** - Face detection and recognition for the C1C0 robot using Python and computer vision
@@ -58,7 +58,7 @@ Get in touch through the [contact form](https://gamma2653.github.io/) or connect
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) with dark mode support
 - **UI Components:** [Headless UI](https://headlessui.com/) and [Heroicons](https://heroicons.com/)
 - **Bundler:** [Rsbuild](https://rsbuild.dev/) (Rspack-based)
-- **Testing:** [Rstest](https://rstest.dev/) with React Testing Library
+- **Testing:** [Rstest](https://rstest.rs/) with React Testing Library
 - **Deployment:** [GitHub Pages](https://pages.github.com/) via GitHub Actions
 
 ## Development

@@ -22,18 +22,13 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout your repository using git
-        uses: actions/checkout@v5
-      - name: Install dependencies
-        run: npm install
-      - name: Run tests
-        run: npm run test
+  # The full pull-request suite (lint, types, unit, build checks, end-to-end,
+  # Lighthouse, audit) must pass before anything is deployed.
+  ci:
+    uses: ./.github/workflows/ci.yml
 
   build:
-    needs: test
+    needs: ci
     environment:
       name: github-pages
     runs-on: ubuntu-latest
@@ -41,7 +36,7 @@ jobs:
       - name: Checkout your repository using git
         uses: actions/checkout@v5
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Build
         run: npm run build
       - name: Setup Pages

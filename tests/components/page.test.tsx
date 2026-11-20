@@ -8,29 +8,36 @@ describe('Page', () => {
     expect(screen.getByText('Page content')).toBeInTheDocument();
   });
 
-  test('renders footer with copyright', () => {
+  test('renders footer with the current year, copyright and owner', () => {
     render(<Page>content</Page>);
-    expect(screen.getByText(/All rights reserved/)).toBeInTheDocument();
-    expect(screen.getByText(/Christopher De Jesus/)).toBeInTheDocument();
+    const footer = screen.getByRole('contentinfo');
+    expect(footer).toHaveTextContent(String(new Date().getFullYear()));
+    expect(footer).toHaveTextContent(/All rights reserved/);
+    expect(footer).toHaveTextContent(/Christopher De Jesus/);
   });
 
-  test('has dark mode classes on outer div', () => {
-    const { container } = render(<Page>content</Page>);
-    const outer = container.firstElementChild as HTMLElement;
-    expect(outer).toHaveClass('min-h-screen');
-    expect(outer).toHaveClass('bg-gray-100');
-  });
-
-  test('contains a main element', () => {
+  test('contains a main element with the page container width', () => {
     render(<Page>content</Page>);
     const main = screen.getByRole('main');
     expect(main).toBeInTheDocument();
+    expect(main).toHaveClass('max-w-5xl');
   });
 
-  test('footer is inside main', () => {
+  test('page-in animation is motion-safe only', () => {
     render(<Page>content</Page>);
     const main = screen.getByRole('main');
-    const footer = main.querySelector('footer');
-    expect(footer).not.toBeNull();
+    expect(main).toHaveClass('motion-safe:animate-page-in');
+    expect(main).not.toHaveClass('animate-page-in');
+  });
+
+  test('footer is in flow after main, not inside it and not fixed', () => {
+    render(<Page>content</Page>);
+    const main = screen.getByRole('main');
+    const footer = screen.getByRole('contentinfo');
+    expect(main.querySelector('footer')).toBeNull();
+    expect(main.nextElementSibling).toBe(footer);
+    expect(footer).not.toHaveClass('fixed');
+    expect(footer).not.toHaveClass('absolute');
+    expect(footer).toHaveClass('print:hidden');
   });
 });

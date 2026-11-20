@@ -31,6 +31,20 @@ describe('Collage', () => {
     expect(grid).toHaveClass('md:grid-cols-3');
   });
 
+  test('lazy-loads images in every layout', () => {
+    for (const count of [1, 2, 3]) {
+      const imgs = Array.from({ length: count }, (_, i) => `/img${i + 1}.jpg`);
+      const { unmount } = render(<Collage imgs={imgs} />);
+      const rendered = screen.getAllByRole('img');
+      expect(rendered).toHaveLength(count);
+      for (const img of rendered) {
+        expect(img).toHaveAttribute('loading', 'lazy');
+        expect(img).toHaveAttribute('decoding', 'async');
+      }
+      unmount();
+    }
+  });
+
   test('images have cursor-pointer class', () => {
     render(<Collage imgs={['/img1.jpg']} />);
     const img = screen.getByAltText('Collage Image 1');

@@ -6,6 +6,7 @@ import {
   RouterProvider,
 } from '@tanstack/react-router';
 import { routeTree } from '../../src/routeTree.gen';
+import { LINKS } from '../../src/data/links';
 
 function renderRoute(path: string) {
   const router = createRouter({
@@ -24,14 +25,21 @@ describe('Contact Route (/contact)', () => {
     ).toBeInTheDocument();
   });
 
-  test('renders contact form iframe', async () => {
+  test('does not embed an iframe', async () => {
     renderRoute('/contact');
-    const iframe = await screen.findByTitle('Contact Form');
-    expect(iframe).toBeInTheDocument();
-    expect(iframe).toHaveAttribute(
-      'src',
-      expect.stringContaining('docs.google.com/forms'),
-    );
+    await screen.findByRole('heading', { name: /Get in Touch/ });
+    expect(document.querySelector('iframe')).toBeNull();
+  });
+
+  test('links to the contact form in a new tab', async () => {
+    renderRoute('/contact');
+    await screen.findByRole('heading', { name: /Get in Touch/ });
+    const formLink = screen
+      .getAllByRole('link')
+      .find((el) => el.getAttribute('href') === LINKS.contactForm);
+    expect(formLink).toBeDefined();
+    expect(formLink).toHaveAttribute('target', '_blank');
+    expect(formLink).toHaveAttribute('rel', 'noopener noreferrer');
   });
 
   test('renders LinkedIn link in page content', async () => {
