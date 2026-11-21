@@ -1,4 +1,4 @@
-import { pageTitle } from '../lib/site';
+import { pageTitle, SITE } from '../lib/site';
 import { createFileRoute, Link } from '@tanstack/react-router'
 import Page from '../components/page';
 import { CaptionedImage } from '../components/image';
@@ -6,22 +6,20 @@ import butter_tasty from '../assets/images/butter_tasty.webp';
 import Card from '../components/card';
 import PageHeader from '../components/page-header';
 import ExperienceList from '../components/experience-list';
+import ResumeProjects from '../components/resume-projects';
 import SkillGroups from '../components/skill-groups';
 import PrintResumeButton from '../components/print-resume-button';
 import { LINKS } from '../data/links';
-import { activities, currentRoles, education, experience, type Role } from '../data/resume';
+import { activities, currentRoles, education, experience, resumeProjects, type Role } from '../data/resume';
 
 export const Route = createFileRoute('/about')({
   component: RouteComponent,
   head: () => ({ meta: [{ title: pageTitle('About') }] }),
 })
 
-const SITE_URL = 'https://gamma2653.github.io';
-
-const sectionHeading = 'font-display text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6 print:text-xl print:mb-2';
-const resumeCard = 'print:shadow-none print:border-0 print:p-0 print:bg-transparent print:break-inside-avoid';
-const bodyText = 'text-sm sm:text-base text-gray-700 dark:text-gray-300 print:text-black';
-const mutedText = 'text-sm sm:text-base text-gray-600 dark:text-gray-400 print:text-black';
+const sectionHeading = 'font-display text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6';
+const resumeHeading = 'mt-5 mb-2 border-b border-gray-300 dark:border-gray-600 pb-0.5 text-sm font-bold uppercase tracking-wide text-gray-900 dark:text-gray-100 print:mt-3 print:border-black print:text-black';
+const bodyText = 'text-sm sm:text-base text-gray-700 dark:text-gray-300';
 
 /** "a Software Engineer at Tagup and a part-time Founding Engineer at Saga Healthcare Co" */
 function describeRoles(roles: Role[]): string {
@@ -84,74 +82,79 @@ function RouteComponent() {
           </p>
         </section>
 
-        {/* Resume: the only part of this page that prints */}
-        <section id="resume" aria-labelledby="resume-heading" className="print:text-black">
-          <div className="mb-6 sm:mb-8 flex flex-wrap items-center justify-between gap-3 print:hidden">
+        {/* Resume: the only part of this page that prints. Laid out like the resume document. */}
+        <section id="resume" aria-labelledby="resume-heading" className="mb-8 sm:mb-12 print:mb-0">
+          <div className="mb-4 sm:mb-6 flex flex-wrap items-center justify-between gap-3 print:hidden">
             <h2 id="resume-heading" className="font-display text-xl sm:text-2xl lg:text-3xl font-bold">Resume</h2>
             <PrintResumeButton />
           </div>
 
-          <div data-testid="resume-print-header" className="hidden print:block mb-6">
-            <p className="font-display text-2xl font-bold">Christopher De Jesus</p>
-            <p className="text-sm">
-              {SITE_URL} · {LINKS.github} · {LINKS.linkedin}
-            </p>
-          </div>
-
-          {/* Experience */}
-          <div className="mb-8 sm:mb-12 print:mb-6">
-            <h2 className={sectionHeading}>Professional Experience</h2>
-            <ExperienceList roles={experience} />
-          </div>
-
-          {/* Education */}
-          <div className="mb-8 sm:mb-12 print:mb-6">
-            <h2 className={sectionHeading}>Education</h2>
-            <Card reveal={false} className={resumeCard}>
-              <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-                <h3 className="font-display text-lg sm:text-xl font-bold">{education.school}</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 print:text-black">{education.graduation}</p>
-              </div>
-              <p className={`${mutedText} mt-1`}>{education.degree} · {education.location}</p>
-              <p className={`${bodyText} mt-3`}>
-                <span className="font-semibold">Relevant coursework:</span> {education.coursework.join(', ')}
+          {/* No scroll-in reveal: content below the fold must not print invisible. */}
+          <Card
+            reveal={false}
+            className="text-sm leading-snug text-gray-800 dark:text-gray-200 sm:p-8 print:border-0 print:bg-transparent print:p-0 print:text-[13px] print:leading-tight print:text-black print:shadow-none"
+          >
+            <div data-testid="resume-header" className="text-center">
+              <p className="font-display text-2xl font-bold text-gray-900 dark:text-gray-100 print:text-black">{SITE.name}</p>
+              <p className="mt-1 flex flex-wrap justify-center gap-x-2">
+                {[SITE.url, LINKS.github, LINKS.linkedin].map((href, index) => (
+                  <span key={href}>
+                    {index > 0 && <span aria-hidden="true">⬥ </span>}
+                    <a href={href} target="_blank" rel="noopener noreferrer">{href}</a>
+                  </span>
+                ))}
               </p>
-              <div className="mt-3 sm:mt-4">
-                <p className="text-sm sm:text-base font-semibold text-gray-900 dark:text-gray-100 print:text-black mb-2">Influential Courses & Professors:</p>
-                <ul className={`list-disc list-inside space-y-1 ${bodyText}`}>
-                  <li><span className="font-semibold">Computational Psychology</span> (Shimon Edelman, my faculty advisor) - particularly fascinated by dimensional reduction</li>
-                  <li><span className="font-semibold">Operating Systems & Practicum</span> (Robbert van Renesse)</li>
-                  <li><span className="font-semibold">Functional Programming</span> (Nate Foster)</li>
-                  <li><span className="font-semibold">Systems Programming</span> (Ken Birman)</li>
-                </ul>
-              </div>
+            </div>
+
+            <h3 className={resumeHeading}>Experience</h3>
+            <ExperienceList roles={experience} />
+
+            <h3 className={resumeHeading}>Projects</h3>
+            <ResumeProjects projects={resumeProjects} />
+            <p className="mt-2">
+              Others, see the <Link to="/software">Software</Link>, <Link to="/robotics">Robotics</Link> and{' '}
+              <Link to="/academics">Academics</Link> pages ({SITE.url})
+            </p>
+
+            <h3 className={resumeHeading}>Education</h3>
+            <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+              <p><strong>{education.school}</strong>, {education.location}</p>
+              <p className="font-bold">{education.graduation}</p>
+            </div>
+            <p><em>{education.degree}</em></p>
+            <p><strong>Relevant Coursework:</strong> {education.coursework.join(', ')}</p>
+
+            <h3 className={resumeHeading}>Skills & Frameworks</h3>
+            <SkillGroups />
+          </Card>
+        </section>
+
+        {/* Not on the resume document, so kept out of the printed region */}
+        <div className="mb-8 sm:mb-12 print:hidden">
+          <h2 className={sectionHeading}>Achievements & Activities</h2>
+          <div className="space-y-3 sm:space-y-4">
+            {activities.map((activity) => (
+              <Card key={activity.title}>
+                <div className="flex flex-wrap items-baseline justify-between gap-x-4 mb-2">
+                  <h3 className="font-display text-lg sm:text-xl font-bold">{activity.title}</h3>
+                  {activity.date && (
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{activity.date}</p>
+                  )}
+                </div>
+                <p className={bodyText}>{activity.detail}</p>
+              </Card>
+            ))}
+            <Card>
+              <h3 className="font-display text-lg sm:text-xl font-bold mb-2">Influential Courses & Professors</h3>
+              <ul className={`list-disc list-inside space-y-1 ${bodyText}`}>
+                <li><span className="font-semibold">Computational Psychology</span> (Shimon Edelman, my faculty advisor) - particularly fascinated by dimensional reduction</li>
+                <li><span className="font-semibold">Operating Systems & Practicum</span> (Robbert van Renesse)</li>
+                <li><span className="font-semibold">Functional Programming</span> (Nate Foster)</li>
+                <li><span className="font-semibold">Systems Programming</span> (Ken Birman)</li>
+              </ul>
             </Card>
           </div>
-
-          {/* Skills */}
-          <div className="mb-8 sm:mb-12 print:mb-6">
-            <h2 className={sectionHeading}>Technical Skills</h2>
-            <SkillGroups />
-          </div>
-
-          {/* Achievements */}
-          <div className="mb-8 sm:mb-12 print:mb-0">
-            <h2 className={sectionHeading}>Achievements & Activities</h2>
-            <div className="space-y-3 sm:space-y-4">
-              {activities.map((activity) => (
-                <Card key={activity.title} reveal={false} className={resumeCard}>
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 mb-2">
-                    <h3 className="font-display text-lg sm:text-xl font-bold">{activity.title}</h3>
-                    {activity.date && (
-                      <p className="text-sm text-gray-600 dark:text-gray-400 print:text-black">{activity.date}</p>
-                    )}
-                  </div>
-                  <p className={bodyText}>{activity.detail}</p>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+        </div>
 
         {/* Personal Interests */}
         <div className="mb-8 sm:mb-12 print:hidden">

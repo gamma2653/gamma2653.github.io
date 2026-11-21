@@ -1,50 +1,49 @@
-import type { Role } from '../data/resume';
-import Card from './card';
+import { dateRange, type Role } from '../data/resume';
+import Emphasis from './emphasis';
 
 type ExperienceListProps = {
   roles: Role[];
 }
 
-function dateRange({ start, end }: Role): string {
-  return [start, end].filter(Boolean).join(' – ');
+function qualifier({ partTime, contract }: Role): string | undefined {
+  if (partTime) return 'Part-time';
+  if (contract) return 'Contract';
+  return undefined;
 }
 
+/** Resume roles, each laid out as in the resume document: a title line with the dates opposite, then bullets. */
 export default function ExperienceList({ roles }: ExperienceListProps) {
   return (
-    <div className="space-y-4 sm:space-y-6 print:space-y-4">
+    <div className="space-y-3">
       {roles.map((role) => {
         const dates = dateRange(role);
+        const note = qualifier(role);
         return (
-          // No scroll-in reveal: cards below the fold must not print invisible.
-          <Card
-            key={`${role.title}-${role.company}`}
-            as="article"
-            reveal={false}
-            className="print:shadow-none print:border-0 print:p-0 print:bg-transparent print:break-inside-avoid"
-          >
+          <article key={`${role.title}-${role.company}`} className="print:break-inside-avoid">
             <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-              <h3 className="font-display text-lg sm:text-xl font-bold">{role.title}</h3>
-              {dates && (
-                <p className="text-sm text-gray-600 dark:text-gray-400 print:text-black">{dates}</p>
-              )}
+              <h4 className="font-bold">
+                <em>{role.title}</em>
+                {note && <em className="font-normal"> ({note})</em>}
+                {', '}
+                {role.url ? (
+                  <a href={role.url} target="_blank" rel="noopener noreferrer">
+                    {role.company}
+                  </a>
+                ) : (
+                  role.company
+                )}
+                {role.location && <>, {role.location}</>}
+              </h4>
+              {dates && <p className="font-bold">{dates}</p>}
             </div>
-            <p className="mt-1 text-sm sm:text-base text-gray-600 dark:text-gray-400 print:text-black">
-              {role.url ? (
-                <a href={role.url} target="_blank" rel="noopener noreferrer">
-                  {role.company}
-                </a>
-              ) : (
-                role.company
-              )}
-              {role.location && <> · {role.location}</>}
-              {role.partTime && <> · part-time</>}
-            </p>
-            <ul className="mt-3 list-disc space-y-1 pl-5 text-sm sm:text-base text-gray-700 dark:text-gray-300 print:text-black">
+            <ul className="mt-1 list-disc space-y-0.5 pl-5">
               {role.highlights.map((highlight) => (
-                <li key={highlight}>{highlight}</li>
+                <li key={highlight}>
+                  <Emphasis text={highlight} />
+                </li>
               ))}
             </ul>
-          </Card>
+          </article>
         );
       })}
     </div>
