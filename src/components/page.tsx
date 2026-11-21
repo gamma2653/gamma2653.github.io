@@ -6,7 +6,7 @@ type PageProps = {
 const Page = ({ children }: PageProps) => {
   return (
     <div className="flex flex-1 flex-col">
-      <main className="w-full max-w-5xl mx-auto flex-1 px-4 sm:px-6 lg:px-8 py-8 sm:py-12 motion-safe:animate-page-in">
+      <main className="w-full max-w-5xl mx-auto flex-1 px-4 sm:px-6 lg:px-8 py-8 sm:py-12 print:p-0 motion-safe:animate-page-in">
         {children}
       </main>
       <footer className="print:hidden border-t border-gray-200 dark:border-gray-700">

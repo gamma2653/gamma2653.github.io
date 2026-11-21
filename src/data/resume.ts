@@ -9,6 +9,20 @@ export type Role = {
   /** Display text, or 'Present' for a current role. */
   end?: string;
   partTime?: boolean;
+  contract?: boolean;
+  /** Bullets; `**text**` marks the phrases the resume sets in bold. */
+  highlights: string[];
+};
+
+export type ResumeProject = {
+  name: string;
+  /** Project page, when there is one. */
+  url?: string;
+  tagline: string;
+  repos: { label: string; url: string }[];
+  start?: string;
+  end?: string;
+  /** Bullets; `**text**` marks bold, as in `Role.highlights`. */
   highlights: string[];
 };
 
@@ -24,7 +38,8 @@ export const PRESENT = 'Present';
 
 /**
  * Work history shown on the About page, newest first.
- * Condensed from the owner's resume; keep it free of contact details.
+ * Mirrors the owner's resume document; keep the wording in sync with it and
+ * keep it free of contact details.
  */
 export const experience: Role[] = [
   {
@@ -35,9 +50,11 @@ export const experience: Role[] = [
     start: 'Mar 2026',
     end: PRESENT,
     highlights: [
-      'Build full-stack features for Manifest, an AI logistics decision platform used by U.S. Marine Corps logisticians and maintenance planners; moved from customer delivery to internal R&D.',
-      "Built the agent harness and tool-calling layer for Argus, the platform's conversational AI assistant, and GPU-rendered, cached diagrams that let users explore hundreds of thousands of entities interactively.",
-      "Cut database load by about 99% on heavy calculations with a precomputed, background-refreshed cache table, and served as rotating release manager for the launch week of the platform's newest major version.",
+      'Built full-stack features for Manifest, an AI logistics decision platform used by **U.S. Marine Corps** logisticians and maintenance planners; moved from customer delivery to internal R&D.',
+      "Contributed to the agent harness and **tool-calling layer** for **Argus**, the platform's conversational AI assistant.",
+      'Built **GPU-rendered, cached diagrams** that let users explore **hundreds of thousands of entities** interactively.',
+      'Cut database load **~99%** on heavy calculations via a precomputed, background-refreshed cache table.',
+      "Served as rotating **release manager** for the launch week of the platform's newest major version, coordinating with the DevOps team; on the legacy platform, shipped a customer-requested feature within my first two weeks.",
     ],
   },
   {
@@ -49,58 +66,76 @@ export const experience: Role[] = [
     end: PRESENT,
     partTime: true,
     highlights: [
-      'Built an HSA/FSA platform from scratch at a 3-person startup: about 60% of product code, about 95% of infrastructure, 290+ PRs.',
-      'Delivered HSA, FSA and Limited-Purpose FSA flows end to end on a custodial banking API: claims, AI receipt substantiation, reimbursements, rollovers, card management and KYC/KYB onboarding.',
-      'Designed the AWS platform in Terraform, hardened for HIPAA and SOC 2, with gated releases and about 2,800 tests; shipped per-employer SSO via Keycloak/OIDC with SMS 2FA, a partner API and an employer admin dashboard.',
+      'Built an HSA/FSA platform from scratch at a 3-person startup: **~60% of product code**, **~95% of infra**, **290+ PRs**.',
+      'Delivered HSA, FSA and Limited-Purpose FSA flows end to end on a custodial banking API: claims, AI receipt substantiation, reimbursements, rollovers, card management, and KYC/KYB onboarding.',
+      'Designed the **AWS platform in Terraform**, hardened for **HIPAA and SOC 2**, with gated releases and **~2,800 tests**.',
+      'Shipped employer features: per-employer **SSO via Keycloak/OIDC** with SMS 2FA, a partner API with per-org credentials, and an employer admin dashboard.',
     ],
   },
   {
     title: 'Software Engineer',
     company: 'aRoboticsCompany',
     url: 'https://arcinc.com',
-    location: 'Ossining, NY',
+    location: 'Ossining, New York',
     start: 'Sept 2023',
     end: 'June 2025',
     highlights: [
-      'Built and deployed 20+ native UI tools integrated with Python backend services, reducing in-field civil inspection time by 50%.',
-      'Designed high-throughput data post-processing pipelines handling thousands of sensor files per deployment.',
-      'Engineered an AWS-hosted management platform (EC2, S3, Lambda, CloudWatch) with 99.9% uptime, cutting reporting time in half for 50+ users, and automated development testing infrastructure, reducing cloud compute costs by 25-40%.',
+      'Built and deployed **20+ native UI** tools integrated with Python backend services, reducing in-field civil inspection time by 50%.',
+      'Designed **high-throughput data post-processing pipelines** handling thousands of sensor files per deployment.',
+      'Engineered an **AWS-hosted management platform** (EC2, S3, Lambda, CloudWatch) with **99.9% uptime**, cutting reporting time in half for **50+ users**.',
+      'Automated development testing infrastructure, reducing cloud compute costs by **25–40%**.',
     ],
   },
   {
-    title: 'Data Engineer (contract)',
+    title: 'Data Engineer',
     company: 'Tompkins Consolidated Area Transit',
     location: 'Ithaca, NY',
     start: 'Sept 2018',
     end: 'Sept 2023',
+    contract: true,
     highlights: [
-      'Built an ETL data warehouse holding hundreds of gigabytes of transit data, used for federal reporting; this cut the time spent preparing NTD reports in half.',
+      'Built an **ETL data warehouse** holding hundreds of gigabytes of transit data, used for **federal reporting**.',
       'Analyzed 300+ GB transit datasets using Python and SQL and reconstructed geospatial graphs.',
-      'Built pipelines to pull data from SQL views into analysis tools and helped set goals for the data team.',
+      'Built pipelines to pull data from SQL views into analysis tools, and helped set goals for the data team.',
+    ],
+  },
+];
+
+/** The resume's Projects section; the rest live on the category pages. */
+export const resumeProjects: ResumeProject[] = [
+  {
+    name: 'Campaign Master',
+    tagline: 'AI-enabled TTRPG Planner',
+    repos: [{ label: 'CampaignMaster', url: 'https://github.com/gamma2653/CampaignMaster' }],
+    start: 'Sept 2025',
+    end: PRESENT,
+    highlights: [
+      'Web app helping game masters plan and run campaigns; AI-assisted, not AI-driven, so users keep creative control.',
     ],
   },
   {
-    title: 'Research Aide',
-    company: 'Computational Physiology Lab, Cornell University',
-    start: 'June 2023',
-    end: 'Sept 2023',
-    highlights: [
-      'Refactored legacy codebases, enabling reproducible ligand-binding simulation experiments.',
-      'Explored energy-efficient optimization using clustering in spiking neural networks.',
+    name: 'C1C0',
+    url: 'https://www.cornellcuprobotics.com/projects/c1c0',
+    tagline: 'Automated Lab Assistant Robot',
+    repos: [
+      {
+        label: 'c1c0-scheduler',
+        url: 'https://github.com/cornell-cup/c1c0-scheduler/commits/master/?author=gamma2653',
+      },
+      {
+        label: 'r2-object_detection',
+        url: 'https://github.com/cornell-cup/r2-object_detection/commits/master/?author=gamma2653',
+      },
     ],
-  },
-  {
-    title: 'Research Assistant',
-    company: 'Cornell B.A.B.Y. Lab',
     highlights: [
-      'Contributed to developmental psychology research studying communication development in human infants and songbirds.',
+      'Halved object-detection inference time (200ms to 100ms per frame) on an NVIDIA Jetson Nano via TensorRT.',
     ],
   },
 ];
 
 export const education: Education = {
   school: 'Cornell University',
-  location: 'Ithaca, NY',
+  location: 'Ithaca, New York',
   degree: 'B.A. Psychology (Computational Focus), Minor in Computer Science',
   graduation: 'Class of 2023',
   coursework: [
@@ -125,6 +160,11 @@ export const activities: { title: string; detail: string; date?: string }[] = [
     date: 'Jan 2018',
   },
 ];
+
+/** 'Mar 2026 – Present', or '' when the dates are not known. */
+export function dateRange({ start, end }: { start?: string; end?: string }): string {
+  return [start, end].filter(Boolean).join(' – ');
+}
 
 /** Roles that are still ongoing. */
 export function currentRoles(): Role[] {

@@ -46,7 +46,7 @@ Uses **TanStack Router** with file-based routing:
 
 Key routes:
 - `/` - Home page: hero (name, pitch, photo, Projects/Contact buttons), featured case studies, and category entry points
-- `/about` - About page: narrative sections (hidden in print) around a printable resume region (`<section id="resume">`)
+- `/about` - About page: narrative sections (hidden in print) around a printable resume region (`<section id="resume">`) laid out like the owner's resume document (Experience, Projects, Education, Skills & Frameworks) and sized to print on one Letter page
 - `/software`, `/robotics`, `/academics` - Project category pages
 - `/contact` - Contact page
 
@@ -66,8 +66,10 @@ Key routes:
 - `category-card.tsx` - `CategoryCard` is a `Link` to a category page wrapping an interactive `Card` (image, label, project count); used on the home page
 - `case-study.tsx` - `CaseStudyCard` renders a `CaseStudy` either `full` (problem / what I built / outcome, on category pages) or `compact` (thumbnail, summary and a link to the category page, on the home page)
 - `earlier-work.tsx` - `EarlierWork` compact row of projects with `tier: 'earlier'`
-- `experience-list.tsx` - `ExperienceList` renders resume roles as cards on About
-- `skill-groups.tsx` - `SkillGroups` renders grouped skill tags linked to the projects that use them
+- `experience-list.tsx` - `ExperienceList` renders resume roles on About as title lines (title, company, location, dates opposite) with bullets
+- `resume-projects.tsx` - `ResumeProjects` renders the resume's Projects section the same way
+- `emphasis.tsx` - `Emphasis` renders resume text, turning `**phrase**` into bold
+- `skill-groups.tsx` - `SkillGroups` renders the resume's skills as one line per group
 - `print-resume-button.tsx` - `PrintResumeButton` calls `window.print()` to print/save the About resume region
 - `project-grid.tsx` - `ProjectGrid` lays `ProjectCard`s out in a responsive grid (1 column, 2 from `sm`, 3 from `lg`)
 
@@ -76,8 +78,8 @@ Key routes:
 - Projects live in `src/data/projects.ts` as a typed `Project[]`; the Software, Robotics and Academics pages render from it through `projectsByCategory()`
 - To add or change a project, edit that file, not the route JSX
 - `src/data/case-studies.ts` - the flagship `caseStudies` (problem / what was built / outcome) shown on the home page and at the top of category pages
-- `src/data/resume.ts` - `experience`, `education`, `activities` and `currentRoles()` for the About page and the home hero
-- `src/data/skills.ts` - `skillGroups` and `projectsForSkill()` for the About skills section
+- `src/data/resume.ts` - `experience`, `resumeProjects`, `education`, `activities` and `currentRoles()` for the About page and the home hero. `experience`, `resumeProjects` and `education` mirror the owner's resume document (minus phone and email, which are never published); keep the wording in sync with it
+- `src/data/skills.ts` - `skillGroups` for the resume's Skills & Frameworks section
 - `src/data/links.ts` - `LINKS` (GitHub, LinkedIn, contact form); use it instead of hard-coding profile URLs
 
 ### Styling

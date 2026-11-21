@@ -1,16 +1,41 @@
 import { expect, test, describe } from '@rstest/core';
-import { activities, currentRoles, education, experience } from '../../src/data/resume';
+import { activities, currentRoles, dateRange, education, experience, resumeProjects } from '../../src/data/resume';
 
 describe('resume data', () => {
-  test('lists the six roles newest first', () => {
+  test('lists the resume document\'s four roles newest first', () => {
     expect(experience.map((role) => role.company)).toEqual([
       'Tagup',
       'Saga Healthcare Co',
       'aRoboticsCompany',
       'Tompkins Consolidated Area Transit',
-      'Computational Physiology Lab, Cornell University',
-      'Cornell B.A.B.Y. Lab',
     ]);
+  });
+
+  test('describes the Argus work as a contribution, not sole authorship', () => {
+    const tagup = experience.find((role) => role.company === 'Tagup');
+    const argus = tagup?.highlights.filter((highlight) => highlight.includes('Argus'));
+    expect(argus).toHaveLength(1);
+    expect(argus![0]).toMatch(/^Contributed to the agent harness/);
+  });
+
+  test('marks the part-time and contract roles', () => {
+    expect(experience.filter((role) => role.partTime).map((role) => role.company)).toEqual(['Saga Healthcare Co']);
+    expect(experience.filter((role) => role.contract).map((role) => role.company)).toEqual([
+      'Tompkins Consolidated Area Transit',
+    ]);
+  });
+
+  test('lists the resume projects with their repositories', () => {
+    expect(resumeProjects.map((project) => project.name)).toEqual(['Campaign Master', 'C1C0']);
+    for (const project of resumeProjects) {
+      expect(project.repos.length).toBeGreaterThan(0);
+      expect(project.highlights.length).toBeGreaterThan(0);
+    }
+  });
+
+  test('dateRange joins the known dates', () => {
+    expect(dateRange({ start: 'Jan 2024', end: 'Present' })).toBe('Jan 2024 – Present');
+    expect(dateRange({})).toBe('');
   });
 
   test('every role has a title and non-empty highlights', () => {
@@ -37,9 +62,6 @@ describe('resume data', () => {
     const arobotics = experience.find((role) => role.company === 'aRoboticsCompany');
     expect(arobotics?.start).toBe('Sept 2023');
     expect(arobotics?.end).toBe('June 2025');
-    const babyLab = experience.find((role) => role.company === 'Cornell B.A.B.Y. Lab');
-    expect(babyLab?.start).toBeUndefined();
-    expect(babyLab?.end).toBeUndefined();
   });
 
   test('describes the degree', () => {
@@ -50,7 +72,7 @@ describe('resume data', () => {
   });
 
   test('carries no contact details', () => {
-    const text = JSON.stringify({ experience, education, activities });
+    const text = JSON.stringify({ experience, education, activities, resumeProjects });
     expect(text).not.toMatch(/\(\d{3}\)\s?\d{3}/);
     expect(text).not.toMatch(/@[a-z0-9-]+\.[a-z]{2,}/i);
   });

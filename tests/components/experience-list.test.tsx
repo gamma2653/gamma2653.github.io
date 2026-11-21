@@ -12,9 +12,9 @@ const roles: Role[] = [
     start: 'Jan 2024',
     end: 'Present',
     partTime: true,
-    highlights: ['Did one thing.', 'Did another thing.'],
+    highlights: ['Did **one** thing.', 'Did another thing.'],
   },
-  { title: 'Lab Assistant', company: 'Some Lab', highlights: ['Helped out.'] },
+  { title: 'Lab Assistant', company: 'Some Lab', contract: true, highlights: ['Helped out.'] },
 ];
 
 describe('ExperienceList', () => {
@@ -22,18 +22,25 @@ describe('ExperienceList', () => {
     render(<ExperienceList roles={roles} />);
     const [first, second] = screen.getAllByRole('article');
 
-    expect(within(first).getByRole('heading', { level: 3, name: 'Staff Engineer' })).toBeInTheDocument();
+    expect(within(first).getByRole('heading', { level: 4 })).toHaveTextContent(
+      'Staff Engineer (Part-time), Example Co, Springfield',
+    );
     expect(within(first).getByText('Jan 2024 – Present')).toBeInTheDocument();
-    expect(within(first).getByText(/Springfield/)).toHaveTextContent('part-time');
     expect(within(first).getAllByRole('listitem').map((item) => item.textContent)).toEqual([
       'Did one thing.',
       'Did another thing.',
     ]);
 
-    expect(within(second).getByRole('heading', { level: 3, name: 'Lab Assistant' })).toBeInTheDocument();
-    expect(within(second).getByText('Some Lab')).toBeInTheDocument();
+    expect(within(second).getByRole('heading', { level: 4 })).toHaveTextContent('Lab Assistant (Contract), Some Lab');
     expect(second).not.toHaveTextContent('–');
-    expect(second).not.toHaveTextContent('part-time');
+    expect(second).not.toHaveTextContent('Part-time');
+  });
+
+  test('sets the marked phrases of a highlight in bold', () => {
+    render(<ExperienceList roles={roles} />);
+    const bold = screen.getByText('one');
+    expect(bold.tagName).toBe('STRONG');
+    expect(bold.closest('li')).toHaveTextContent('Did one thing.');
   });
 
   test('links the company only when it has a url', () => {
@@ -45,11 +52,11 @@ describe('ExperienceList', () => {
     expect(screen.queryByRole('link', { name: 'Some Lab' })).not.toBeInTheDocument();
   });
 
-  test('cards print flat and are not hidden behind a scroll-in reveal', () => {
+  test('entries do not split across printed pages and are not hidden behind a scroll-in reveal', () => {
     render(<ExperienceList roles={roles} />);
-    for (const card of screen.getAllByRole('article')) {
-      expect(card).toHaveClass('print:shadow-none', 'print:border-0', 'print:p-0', 'print:break-inside-avoid');
-      expect(card).not.toHaveAttribute('data-revealed');
+    for (const entry of screen.getAllByRole('article')) {
+      expect(entry).toHaveClass('print:break-inside-avoid');
+      expect(entry).not.toHaveAttribute('data-revealed');
     }
   });
 });

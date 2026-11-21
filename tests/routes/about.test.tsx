@@ -7,7 +7,6 @@ import {
 } from '@tanstack/react-router';
 import { routeTree } from '../../src/routeTree.gen';
 import { LINKS } from '../../src/data/links';
-import { projects } from '../../src/data/projects';
 
 function renderRoute(path: string) {
   const router = createRouter({
@@ -36,9 +35,10 @@ describe('About Route (/about)', () => {
   test('renders the section headings', async () => {
     const { main } = await renderAbout();
     for (const name of [
-      'Professional Experience',
+      'Experience',
+      'Projects',
       'Education',
-      'Technical Skills',
+      'Skills & Frameworks',
       'Achievements & Activities',
       'Beyond Code',
       "Let's Connect",
@@ -73,58 +73,57 @@ describe('About Route (/about)', () => {
     expect(mainElement.textContent!.match(/computational irreducibility/g)).toHaveLength(1);
   });
 
-  test('lists current and past roles with their dates', async () => {
-    const { main } = await renderAbout();
-    const cardFor = (company: string) =>
-      main
+  test('lists the resume roles with their dates', async () => {
+    const { mainElement } = await renderAbout();
+    const resume = within(mainElement.querySelector('#resume') as HTMLElement);
+    const entryFor = (company: string) =>
+      resume
         .getAllByRole('article')
-        .find((article) => within(article).queryByText(company) !== null) as HTMLElement;
+        .find((article) => within(article).queryByRole('heading', { name: new RegExp(company) }) !== null) as HTMLElement;
 
     for (const company of ['Tagup', 'Saga Healthcare Co']) {
-      const card = cardFor(company);
-      expect(card).toBeDefined();
-      expect(card).toHaveTextContent('Mar 2026');
-      expect(card).toHaveTextContent('Present');
+      const entry = entryFor(company);
+      expect(entry).toBeDefined();
+      expect(entry).toHaveTextContent('Mar 2026 – Present');
     }
-    expect(cardFor('Saga Healthcare Co')).toHaveTextContent('part-time');
+    expect(entryFor('Saga Healthcare Co')).toHaveTextContent('(Part-time)');
+    expect(entryFor('Tompkins Consolidated Area Transit')).toHaveTextContent('(Contract)');
+    expect(entryFor('aRoboticsCompany')).toHaveTextContent('Sept 2023 – June 2025');
+    expect(entryFor('Tagup')).toHaveTextContent(/Contributed to the agent harness and tool-calling layer for Argus/);
 
-    const arobotics = cardFor('aRoboticsCompany');
-    expect(arobotics).toHaveTextContent('Sept 2023');
-    expect(arobotics).toHaveTextContent('June 2025');
-
-    expect(main.getAllByRole('article')).toHaveLength(6);
+    // Four roles and two projects, as on the resume document.
+    expect(resume.getAllByRole('article')).toHaveLength(6);
   });
 
-  test('renders education from the resume and keeps the influential courses', async () => {
-    const { main } = await renderAbout();
-    expect(main.getByRole('heading', { level: 3, name: 'Cornell University' })).toBeInTheDocument();
-    expect(main.getByText('Class of 2023')).toBeInTheDocument();
+  test('lists the resume projects and points to the category pages for the rest', async () => {
+    const { mainElement } = await renderAbout();
+    const resume = within(mainElement.querySelector('#resume') as HTMLElement);
+    expect(resume.getByRole('heading', { level: 4, name: /Campaign Master - AI-enabled TTRPG Planner/ })).toBeInTheDocument();
+    expect(resume.getByRole('heading', { level: 4, name: /C1C0 - Automated Lab Assistant Robot/ })).toBeInTheDocument();
+    for (const [name, path] of [['Software', '/software'], ['Robotics', '/robotics'], ['Academics', '/academics']]) {
+      expect(resume.getByRole('link', { name }).getAttribute('href')).toContain(path);
+    }
+  });
+
+  test('renders education from the resume and keeps the influential courses outside it', async () => {
+    const { mainElement, main } = await renderAbout();
+    const resume = mainElement.querySelector('#resume') as HTMLElement;
+    expect(within(resume).getByText('Cornell University')).toBeInTheDocument();
+    expect(within(resume).getByText('Class of 2023')).toBeInTheDocument();
     expect(
-      main.getByText(/B\.A\. Psychology \(Computational Focus\), Minor in Computer Science/),
+      within(resume).getByText(/B\.A\. Psychology \(Computational Focus\), Minor in Computer Science/),
     ).toBeInTheDocument();
-    expect(main.getByText(/Influential Courses & Professors/)).toBeInTheDocument();
+    expect(resume).toHaveTextContent('Relevant Coursework: Systems Programming');
+    expect(resume).not.toContainElement(main.getByRole('heading', { name: 'Influential Courses & Professors' }));
     expect(main.getByText(/Robbert van Renesse/)).toBeInTheDocument();
   });
 
-  test('renders grouped skills tied to projects', async () => {
-    const { main } = await renderAbout();
-    for (const group of ['Languages', 'Frameworks', 'Tooling']) {
-      expect(main.getByRole('heading', { level: 3, name: group })).toBeInTheDocument();
-    }
-
-    const languages = main.getByRole('list', { name: 'Languages' });
-    const python = within(languages).getByText('Python', { selector: 'span' }).closest('li') as HTMLElement;
-    const pythonLinks = within(python).getAllByRole('link');
-    expect(pythonLinks.length).toBeGreaterThan(0);
-    for (const link of pythonLinks) {
-      const project = projects.find((candidate) => candidate.title === link.textContent);
-      expect(project).toBeDefined();
-      expect(project!.tags).toContain('Python');
-      expect(link.getAttribute('href')).toContain(`/${project!.category}`);
-    }
-
-    const rust = within(languages).getByText('Rust', { selector: 'span' }).closest('li') as HTMLElement;
-    expect(within(rust).queryByRole('link')).not.toBeInTheDocument();
+  test('renders the skills as the resume\'s three lines', async () => {
+    const { mainElement } = await renderAbout();
+    const resume = mainElement.querySelector('#resume') as HTMLElement;
+    expect(resume).toHaveTextContent('Languages: Python, TypeScript, Rust, C++, SQL');
+    expect(resume).toHaveTextContent(/Frameworks & Tools: FastAPI, Next\.js/);
+    expect(resume).toHaveTextContent(/Specialized: LLM agent tooling/);
   });
 
   test('renders achievements and activities', async () => {
@@ -142,21 +141,20 @@ describe('About Route (/about)', () => {
     expect(print).toHaveBeenCalledTimes(1);
   });
 
-  test('only the resume region prints, with a print-only header of public URLs', async () => {
+  test('only the resume region prints, under a header of public URLs', async () => {
     const { mainElement, main } = await renderAbout();
     const resume = mainElement.querySelector('#resume') as HTMLElement;
     expect(resume).not.toBeNull();
     expect(resume).toHaveAccessibleName('Resume');
-    for (const name of ['Professional Experience', 'Education', 'Technical Skills', 'Achievements & Activities']) {
-      expect(within(resume).getByRole('heading', { name })).toBeInTheDocument();
+    for (const name of ['Experience', 'Projects', 'Education', 'Skills & Frameworks']) {
+      expect(within(resume).getByRole('heading', { level: 3, name })).toBeInTheDocument();
     }
 
-    const header = main.getByTestId('resume-print-header');
+    const header = main.getByTestId('resume-header');
     expect(resume).toContainElement(header);
-    expect(header).toHaveClass('hidden', 'print:block');
     expect(header).toHaveTextContent('Christopher De Jesus');
     for (const url of ['https://gamma2653.github.io', LINKS.github, LINKS.linkedin]) {
-      expect(header).toHaveTextContent(url);
+      expect(within(header).getByRole('link', { name: url })).toHaveAttribute('href', url);
     }
 
     // Everything outside the resume region is hidden when printing.
@@ -165,7 +163,7 @@ describe('About Route (/about)', () => {
         expect(sibling).toHaveClass('print:hidden');
       }
     }
-    for (const name of ['Beyond Code', "Let's Connect"]) {
+    for (const name of ['Achievements & Activities', 'Beyond Code', "Let's Connect"]) {
       expect(resume).not.toContainElement(main.getByRole('heading', { name }));
     }
     expect(resume).not.toContainElement(main.getByAltText('Hiking Buttermilk Falls'));
